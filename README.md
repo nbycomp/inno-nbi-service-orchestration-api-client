@@ -1,3 +1,5 @@
+![image](https://github.com/user-attachments/assets/a1726e23-59a0-430c-b6a0-f07a631db274)
+
 # 🚀 NBI Client: Your Gateway to Service Orchestration
 
 Welcome to the NBI Client, a powerful Python library that simplifies interaction with the NBI Service Orchestration API. This client provides a seamless interface for managing service chains across cloud and edge computing environments.
