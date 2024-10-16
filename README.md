@@ -53,6 +53,12 @@ The NearbyOne Innovation NBI (North-Bound Interface) Client is a robust Python l
 
    Replace placeholders with your actual credentials and information.
 
+   Note: For `NBY_ENV_NAME`, use everything before `.nearbycomputing.com` in your environment URL.
+
+   Examples:
+   - For https://nearbyone.innovationlab.nearbycomputing.com/, use `NBY_ENV_NAME=nearbyone.innovationlab`
+   - For https://berendgort.envs.nearbycomputing.com/, use `NBY_ENV_NAME=berendgort.envs`
+
 ## Quick Start Guide
 
 For a comprehensive example of how to use the NearbyOne Innovation NBI Client, refer to the `nbi_client_examples.py` file in the project root. This script demonstrates various API calls and can be run directly without any specific parameters.

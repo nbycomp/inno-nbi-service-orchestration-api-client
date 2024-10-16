@@ -32,9 +32,10 @@ class KratosClient:
         if not self.env_name:
             raise ValueError("Environment name NBY_ENV_NAME is not set. Action required: configure your .env file!")
 
-        self.kratos_public = f"https://{self.env_name}.envs.nearbycomputing.com/.ory/kratos/public"
-        self.base_url = f"https://{self.env_name}.envs.nearbycomputing.com/inno-nbi-api/"
+        self.kratos_public = f"https://{self.env_name}.nearbycomputing.com/.ory/kratos/public"
+        self.base_url = f"https://{self.env_name}.nearbycomputing.com/inno-nbi-api/"
         self.session_token = None
+        self.headers = {"Content-Type": "application/json"}
 
     def fetch_action_url(self) -> str:
         try:
@@ -94,4 +95,3 @@ if __name__ == "__main__":
         print(f"Response: {response}")
     except (AuthenticationError, CommunicationError) as e:
         print(f"Error: {e}")
-
