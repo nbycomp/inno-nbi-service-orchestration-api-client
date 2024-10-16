@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **display_name** | **str** |  | [optional] 
 **description** | **str** |  | [optional] 
 **sites** | **List[str]** |  | [optional] 
-**devices** | **List[str]** |  | [optional] 
+**device_metas** | [**List[DeviceMeta]**](DeviceMeta.md) |  | [optional] 
 
 ## Example
 

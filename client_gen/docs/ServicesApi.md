@@ -155,7 +155,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_all_deployed_services**
-> List[ServiceChainResponse] get_all_deployed_services()
+> List[ServiceChainResponse] get_all_deployed_services(site_ids=site_ids)
 
 Retrieve all deployed service chains
 
@@ -179,10 +179,11 @@ configuration = inno_nbi_api.Configuration(
 with inno_nbi_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = inno_nbi_api.ServicesApi(api_client)
+    site_ids = ['site_ids_example'] # List[str] | List of sites to filter the services. (optional)
 
     try:
         # Retrieve all deployed service chains
-        api_response = api_instance.get_all_deployed_services()
+        api_response = api_instance.get_all_deployed_services(site_ids=site_ids)
         print("The response of ServicesApi->get_all_deployed_services:\n")
         pprint(api_response)
     except Exception as e:
@@ -193,7 +194,10 @@ with inno_nbi_api.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **site_ids** | [**List[str]**](str.md)| List of sites to filter the services. | [optional] 
 
 ### Return type
 

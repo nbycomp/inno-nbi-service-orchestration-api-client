@@ -12,12 +12,11 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+
 import unittest
-from unittest.mock import patch, MagicMock
+
 from inno_nbi_api.api.marketplace_api import MarketplaceApi
-from inno_nbi_api.models.fetch_block_chart_response import FetchBlockChartResponse
-from inno_nbi_api.models.marketplace_charts_response import MarketplaceChartsResponse
-from inno_nbi_api.models.chart_repo_index_entry import ChartRepoIndexEntry
+
 
 class TestMarketplaceApi(unittest.TestCase):
     """MarketplaceApi unit test stubs"""
@@ -28,70 +27,20 @@ class TestMarketplaceApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    @patch('inno_nbi_api.api.marketplace_api.MarketplaceApi.fetch_block_chart')
-    def test_fetch_block_chart(self, mock_fetch_block_chart) -> None:
+    def test_fetch_block_chart(self) -> None:
         """Test case for fetch_block_chart
 
         Retrieve specific block chart details from the marketplace
         """
-        # Create a mock response
-        mock_response = FetchBlockChartResponse(
-            display_name='Test BlockChart',
-            description='Test Description',
-            version='1.0',
-            chart_yaml='test_chart_yaml',
-            overrides_yaml='test_overrides_yaml'
-        )
-        mock_fetch_block_chart.return_value = mock_response
+        pass
 
-        # Call the API method
-        block_name = 'test_block'
-        block_version = '1.0'
-        response = self.api.fetch_block_chart(block_name, block_version)
-
-        # Assertions
-        mock_fetch_block_chart.assert_called_once_with(block_name, block_version)
-        self.assertEqual(response.display_name, 'Test BlockChart')
-        self.assertEqual(response.description, 'Test Description')
-        self.assertEqual(response.version, '1.0')
-        self.assertEqual(response.chart_yaml, 'test_chart_yaml')
-        self.assertEqual(response.overrides_yaml, 'test_overrides_yaml')
-
-    @patch('inno_nbi_api.api.marketplace_api.MarketplaceApi.list_marketplace_charts')
-    def test_list_marketplace_charts(self, mock_list_marketplace_charts) -> None:
+    def test_list_marketplace_charts(self) -> None:
         """Test case for list_marketplace_charts
 
         List all available block charts in the marketplace
         """
-        # Create a mock response
-        mock_response = MarketplaceChartsResponse(
-            charts=[
-                ChartRepoIndexEntry(
-                    id='chart1',
-                    name='Test Chart',
-                    display_name='Test Chart Display Name',
-                    description='Test Description',
-                    vendor='Test Vendor',
-                    categories=['category1'],
-                    all_versions=['v1.0', 'v2.0']
-                )
-            ]
-        )
-        mock_list_marketplace_charts.return_value = mock_response
+        pass
 
-        # Call the API method
-        response = self.api.list_marketplace_charts()
-
-        # Assertions
-        mock_list_marketplace_charts.assert_called_once()
-        self.assertEqual(len(response.charts), 1)
-        self.assertEqual(response.charts[0].id, 'chart1')
-        self.assertEqual(response.charts[0].name, 'Test Chart')
-        self.assertEqual(response.charts[0].display_name, 'Test Chart Display Name')
-        self.assertEqual(response.charts[0].description, 'Test Description')
-        self.assertEqual(response.charts[0].vendor, 'Test Vendor')
-        self.assertEqual(response.charts[0].categories, ['category1'])
-        self.assertEqual(response.charts[0].all_versions, ['v1.0', 'v2.0'])
 
 if __name__ == '__main__':
     unittest.main()

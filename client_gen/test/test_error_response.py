@@ -12,7 +12,9 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+
 import unittest
+
 from inno_nbi_api.models.error_response import ErrorResponse
 
 class TestErrorResponse(unittest.TestCase):
@@ -29,29 +31,26 @@ class TestErrorResponse(unittest.TestCase):
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
+        # uncomment below to create an instance of `ErrorResponse`
+        """
+        model = ErrorResponse()
         if include_optional:
             return ErrorResponse(
-                code=56,
-                message='test_message',
-                details=['detail1', 'detail2']
+                code = 56,
+                message = '',
+                details = [
+                    ''
+                    ]
             )
         else:
             return ErrorResponse(
-                code=56,
-                message='test_message'
-            )
+        )
+        """
 
     def testErrorResponse(self):
         """Test ErrorResponse"""
-        inst_req_only = self.make_instance(include_optional=False)
-        self.assertEqual(inst_req_only.code, 56)
-        self.assertEqual(inst_req_only.message, 'test_message')
-        self.assertIsNone(inst_req_only.details)
-
-        inst_req_and_optional = self.make_instance(include_optional=True)
-        self.assertEqual(inst_req_and_optional.code, 56)
-        self.assertEqual(inst_req_and_optional.message, 'test_message')
-        self.assertEqual(inst_req_and_optional.details, ['detail1', 'detail2'])
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

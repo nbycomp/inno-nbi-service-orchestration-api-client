@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** |  | [optional] 
-**blocks** | [**List[BlockArgs]**](BlockArgs.md) |  | [optional] 
+**blocks** | [**List[BlockArgsDeploy]**](BlockArgsDeploy.md) |  | [optional] 
 
 ## Example
 

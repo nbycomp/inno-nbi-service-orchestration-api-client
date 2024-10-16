@@ -15,10 +15,10 @@
 
 import unittest
 
-from inno_nbi_api.models.device_progress import DeviceProgress
+from inno_nbi_api.models.block_args_deploy import BlockArgsDeploy
 
-class TestDeviceProgress(unittest.TestCase):
-    """DeviceProgress unit test stubs"""
+class TestBlockArgsDeploy(unittest.TestCase):
+    """BlockArgsDeploy unit test stubs"""
 
     def setUp(self):
         pass
@@ -26,26 +26,28 @@ class TestDeviceProgress(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> DeviceProgress:
-        """Test DeviceProgress
+    def make_instance(self, include_optional) -> BlockArgsDeploy:
+        """Test BlockArgsDeploy
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `DeviceProgress`
+        # uncomment below to create an instance of `BlockArgsDeploy`
         """
-        model = DeviceProgress()
+        model = BlockArgsDeploy()
         if include_optional:
-            return DeviceProgress(
-                step = 56,
-                goal = 56
+            return BlockArgsDeploy(
+                display_name = '',
+                block_chart_name = '',
+                block_chart_version = '',
+                site_id = ''
             )
         else:
-            return DeviceProgress(
+            return BlockArgsDeploy(
         )
         """
 
-    def testDeviceProgress(self):
-        """Test DeviceProgress"""
+    def testBlockArgsDeploy(self):
+        """Test BlockArgsDeploy"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

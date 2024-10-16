@@ -12,7 +12,9 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+
 import unittest
+
 from inno_nbi_api.models.okto_resource import OktoResource
 
 class TestOktoResource(unittest.TestCase):
@@ -29,40 +31,27 @@ class TestOktoResource(unittest.TestCase):
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
+        # uncomment below to create an instance of `OktoResource`
+        """
+        model = OktoResource()
         if include_optional:
             return OktoResource(
-                id='test_id',
-                name='test_name',
-                kind='test_kind',
-                status='OKTOSTATUS_IN_SYNC',
-                namespace='test_namespace',
-                manifest='test_manifest'
+                id = '',
+                name = '',
+                kind = '',
+                status = 'OKTOSTATUS_IN_SYNC',
+                namespace = '',
+                manifest = ''
             )
         else:
             return OktoResource(
-                id='test_id',
-                name='test_name'
-            )
+        )
+        """
 
-    def testOktoResource_required_only(self):
-        """Test OktoResource with only required params"""
-        inst_req_only = self.make_instance(include_optional=False)
-        self.assertEqual(inst_req_only.id, 'test_id')
-        self.assertEqual(inst_req_only.name, 'test_name')
-        self.assertIsNone(inst_req_only.kind)
-        self.assertIsNone(inst_req_only.status)
-        self.assertIsNone(inst_req_only.namespace)
-        self.assertIsNone(inst_req_only.manifest)
-
-    def testOktoResource_required_and_optional(self):
-        """Test OktoResource with required and optional params"""
-        inst_req_and_optional = self.make_instance(include_optional=True)
-        self.assertEqual(inst_req_and_optional.id, 'test_id')
-        self.assertEqual(inst_req_and_optional.name, 'test_name')
-        self.assertEqual(inst_req_and_optional.kind, 'test_kind')
-        self.assertEqual(inst_req_and_optional.status, 'OKTOSTATUS_IN_SYNC')
-        self.assertEqual(inst_req_and_optional.namespace, 'test_namespace')
-        self.assertEqual(inst_req_and_optional.manifest, 'test_manifest')
+    def testOktoResource(self):
+        """Test OktoResource"""
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

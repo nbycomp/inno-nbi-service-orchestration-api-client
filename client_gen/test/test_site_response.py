@@ -12,9 +12,10 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+
 import unittest
+
 from inno_nbi_api.models.site_response import SiteResponse
-from inno_nbi_api.models.site import Site
 
 class TestSiteResponse(unittest.TestCase):
     """SiteResponse unit test stubs"""
@@ -30,52 +31,35 @@ class TestSiteResponse(unittest.TestCase):
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
+        # uncomment below to create an instance of `SiteResponse`
+        """
+        model = SiteResponse()
         if include_optional:
             return SiteResponse(
-                site=Site(
-                    id='site1',
-                    display_name='Test Site',
-                    description='A test site',
-                    ancestors=['ancestor1'],
-                    sites=['site2'],
-                    devices=['device1'],
-                    org='org1'
-                )
+                site = inno_nbi_api.models.site.Site(
+                    id = '', 
+                    display_name = '', 
+                    description = '', 
+                    ancestors = [
+                        ''
+                        ], 
+                    sites = [
+                        ''
+                        ], 
+                    devices = [
+                        ''
+                        ], 
+                    org = '', )
             )
         else:
             return SiteResponse(
-                site=Site(
-                    id='site1',
-                    display_name='Test Site',
-                    org='org1'
-                )
-            )
+        )
+        """
 
-    def testSiteResponse_required_only(self):
-        """Test SiteResponse with only required params"""
-        inst_req_only = self.make_instance(include_optional=False)
-        self.assertIsInstance(inst_req_only, SiteResponse)
-        self.assertIsInstance(inst_req_only.site, Site)
-        self.assertEqual(inst_req_only.site.id, 'site1')
-        self.assertEqual(inst_req_only.site.display_name, 'Test Site')
-        self.assertEqual(inst_req_only.site.org, 'org1')
-        self.assertIsNone(inst_req_only.site.description)
-        self.assertIsNone(inst_req_only.site.ancestors)
-        self.assertIsNone(inst_req_only.site.sites)
-        self.assertIsNone(inst_req_only.site.devices)
-
-    def testSiteResponse_required_and_optional(self):
-        """Test SiteResponse with required and optional params"""
-        inst_req_and_optional = self.make_instance(include_optional=True)
-        self.assertIsInstance(inst_req_and_optional, SiteResponse)
-        self.assertIsInstance(inst_req_and_optional.site, Site)
-        self.assertEqual(inst_req_and_optional.site.id, 'site1')
-        self.assertEqual(inst_req_and_optional.site.display_name, 'Test Site')
-        self.assertEqual(inst_req_and_optional.site.description, 'A test site')
-        self.assertEqual(inst_req_and_optional.site.ancestors, ['ancestor1'])
-        self.assertEqual(inst_req_and_optional.site.sites, ['site2'])
-        self.assertEqual(inst_req_and_optional.site.devices, ['device1'])
-        self.assertEqual(inst_req_and_optional.site.org, 'org1')
+    def testSiteResponse(self):
+        """Test SiteResponse"""
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()
