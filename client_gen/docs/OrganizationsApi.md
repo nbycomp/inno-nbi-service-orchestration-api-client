@@ -1,4 +1,4 @@
-# inno_nbi_api.OrganizationsApi
+# openapi_client.OrganizationsApi
 
 All URIs are relative to *https://YOURENV.envs.nearbycomputing.com*
 
@@ -16,22 +16,22 @@ Retrieve details for all organizations accessible to the user
 
 
 ```python
-import inno_nbi_api
-from inno_nbi_api.models.organization import Organization
-from inno_nbi_api.rest import ApiException
+import openapi_client
+from openapi_client.models.organization import Organization
+from openapi_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://YOURENV.envs.nearbycomputing.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = inno_nbi_api.Configuration(
+configuration = openapi_client.Configuration(
     host = "https://YOURENV.envs.nearbycomputing.com"
 )
 
 
 # Enter a context with an instance of the API client
-with inno_nbi_api.ApiClient(configuration) as api_client:
+with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = inno_nbi_api.OrganizationsApi(api_client)
+    api_instance = openapi_client.OrganizationsApi(api_client)
 
     try:
         # Retrieve details for all organizations accessible to the user

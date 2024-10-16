@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from inno_nbi_api.models.error_response import ErrorResponse
+from openapi_client.models.error_response import ErrorResponse
 
 # TODO update the JSON string below
 json = "{}"

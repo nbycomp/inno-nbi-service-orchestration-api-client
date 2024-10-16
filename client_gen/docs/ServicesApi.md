@@ -1,4 +1,4 @@
-# inno_nbi_api.ServicesApi
+# openapi_client.ServicesApi
 
 All URIs are relative to *https://YOURENV.envs.nearbycomputing.com*
 
@@ -20,21 +20,21 @@ Delete a deployed service chain by ID
 
 
 ```python
-import inno_nbi_api
-from inno_nbi_api.rest import ApiException
+import openapi_client
+from openapi_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://YOURENV.envs.nearbycomputing.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = inno_nbi_api.Configuration(
+configuration = openapi_client.Configuration(
     host = "https://YOURENV.envs.nearbycomputing.com"
 )
 
 
 # Enter a context with an instance of the API client
-with inno_nbi_api.ApiClient(configuration) as api_client:
+with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = inno_nbi_api.ServicesApi(api_client)
+    api_instance = openapi_client.ServicesApi(api_client)
     service_id = 'service_id_example' # str | The unique identifier of the service to operate on.
 
     try:
@@ -91,23 +91,23 @@ Deploy a new service chain
 
 
 ```python
-import inno_nbi_api
-from inno_nbi_api.models.deploy_service_chain_args import DeployServiceChainArgs
-from inno_nbi_api.rest import ApiException
+import openapi_client
+from openapi_client.models.deploy_service_chain_args import DeployServiceChainArgs
+from openapi_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://YOURENV.envs.nearbycomputing.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = inno_nbi_api.Configuration(
+configuration = openapi_client.Configuration(
     host = "https://YOURENV.envs.nearbycomputing.com"
 )
 
 
 # Enter a context with an instance of the API client
-with inno_nbi_api.ApiClient(configuration) as api_client:
+with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = inno_nbi_api.ServicesApi(api_client)
-    deploy_service_chain_args = inno_nbi_api.DeployServiceChainArgs() # DeployServiceChainArgs | 
+    api_instance = openapi_client.ServicesApi(api_client)
+    deploy_service_chain_args = openapi_client.DeployServiceChainArgs() # DeployServiceChainArgs | 
 
     try:
         # Deploy a new service chain
@@ -155,7 +155,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_all_deployed_services**
-> List[ServiceChainResponse] get_all_deployed_services()
+> List[ServiceChainResponse] get_all_deployed_services(site_ids=site_ids)
 
 Retrieve all deployed service chains
 
@@ -163,26 +163,27 @@ Retrieve all deployed service chains
 
 
 ```python
-import inno_nbi_api
-from inno_nbi_api.models.service_chain_response import ServiceChainResponse
-from inno_nbi_api.rest import ApiException
+import openapi_client
+from openapi_client.models.service_chain_response import ServiceChainResponse
+from openapi_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://YOURENV.envs.nearbycomputing.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = inno_nbi_api.Configuration(
+configuration = openapi_client.Configuration(
     host = "https://YOURENV.envs.nearbycomputing.com"
 )
 
 
 # Enter a context with an instance of the API client
-with inno_nbi_api.ApiClient(configuration) as api_client:
+with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = inno_nbi_api.ServicesApi(api_client)
+    api_instance = openapi_client.ServicesApi(api_client)
+    site_ids = ['site_ids_example'] # List[str] | List of sites to filter the services. (optional)
 
     try:
         # Retrieve all deployed service chains
-        api_response = api_instance.get_all_deployed_services()
+        api_response = api_instance.get_all_deployed_services(site_ids=site_ids)
         print("The response of ServicesApi->get_all_deployed_services:\n")
         pprint(api_response)
     except Exception as e:
@@ -193,7 +194,10 @@ with inno_nbi_api.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **site_ids** | [**List[str]**](str.md)| List of sites to filter the services. | [optional] 
 
 ### Return type
 
@@ -231,22 +235,22 @@ Retrieve deployed service chain by ID
 
 
 ```python
-import inno_nbi_api
-from inno_nbi_api.models.service_chain_response import ServiceChainResponse
-from inno_nbi_api.rest import ApiException
+import openapi_client
+from openapi_client.models.service_chain_response import ServiceChainResponse
+from openapi_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://YOURENV.envs.nearbycomputing.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = inno_nbi_api.Configuration(
+configuration = openapi_client.Configuration(
     host = "https://YOURENV.envs.nearbycomputing.com"
 )
 
 
 # Enter a context with an instance of the API client
-with inno_nbi_api.ApiClient(configuration) as api_client:
+with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = inno_nbi_api.ServicesApi(api_client)
+    api_instance = openapi_client.ServicesApi(api_client)
     service_id = 'service_id_example' # str | The unique identifier of the service to operate on.
 
     try:
@@ -303,25 +307,25 @@ Update a deployed service chain
 
 
 ```python
-import inno_nbi_api
-from inno_nbi_api.models.service_chain_response import ServiceChainResponse
-from inno_nbi_api.models.update_service_chain_args import UpdateServiceChainArgs
-from inno_nbi_api.rest import ApiException
+import openapi_client
+from openapi_client.models.service_chain_response import ServiceChainResponse
+from openapi_client.models.update_service_chain_args import UpdateServiceChainArgs
+from openapi_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://YOURENV.envs.nearbycomputing.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = inno_nbi_api.Configuration(
+configuration = openapi_client.Configuration(
     host = "https://YOURENV.envs.nearbycomputing.com"
 )
 
 
 # Enter a context with an instance of the API client
-with inno_nbi_api.ApiClient(configuration) as api_client:
+with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = inno_nbi_api.ServicesApi(api_client)
+    api_instance = openapi_client.ServicesApi(api_client)
     service_id = 'service_id_example' # str | The unique identifier of the service to operate on.
-    update_service_chain_args = inno_nbi_api.UpdateServiceChainArgs() # UpdateServiceChainArgs | 
+    update_service_chain_args = openapi_client.UpdateServiceChainArgs() # UpdateServiceChainArgs | 
 
     try:
         # Update a deployed service chain

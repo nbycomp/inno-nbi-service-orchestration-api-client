@@ -12,8 +12,10 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+
 import unittest
-from inno_nbi_api.models.device_position import DevicePosition
+
+from openapi_client.models.device_position import DevicePosition
 
 class TestDevicePosition(unittest.TestCase):
     """DevicePosition unit test stubs"""
@@ -29,23 +31,23 @@ class TestDevicePosition(unittest.TestCase):
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
+        # uncomment below to create an instance of `DevicePosition`
+        """
+        model = DevicePosition()
         if include_optional:
             return DevicePosition(
-                lat=1.337,
-                lng=1.337
+                lat = 1.337,
+                lng = 1.337
             )
         else:
-            return DevicePosition()
+            return DevicePosition(
+        )
+        """
 
     def testDevicePosition(self):
         """Test DevicePosition"""
-        inst_req_only = self.make_instance(include_optional=False)
-        self.assertIsNone(inst_req_only.lat)
-        self.assertIsNone(inst_req_only.lng)
-
-        inst_req_and_optional = self.make_instance(include_optional=True)
-        self.assertEqual(inst_req_and_optional.lat, 1.337)
-        self.assertEqual(inst_req_and_optional.lng, 1.337)
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

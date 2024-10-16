@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from inno_nbi_api.models.chart_key import ChartKey
+from openapi_client.models.chart_key import ChartKey
 
 # TODO update the JSON string below
 json = "{}"

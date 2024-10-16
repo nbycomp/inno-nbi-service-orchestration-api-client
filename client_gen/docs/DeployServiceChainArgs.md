@@ -6,12 +6,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** |  | [optional] 
-**blocks** | [**List[BlockArgs]**](BlockArgs.md) |  | [optional] 
+**blocks** | [**List[BlockArgsDeploy]**](BlockArgsDeploy.md) |  | [optional] 
 
 ## Example
 
 ```python
-from inno_nbi_api.models.deploy_service_chain_args import DeployServiceChainArgs
+from openapi_client.models.deploy_service_chain_args import DeployServiceChainArgs
 
 # TODO update the JSON string below
 json = "{}"

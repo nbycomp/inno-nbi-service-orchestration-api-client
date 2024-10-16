@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from inno_nbi_api.models.site_response import SiteResponse
+from openapi_client.models.site_response import SiteResponse
 
 # TODO update the JSON string below
 json = "{}"

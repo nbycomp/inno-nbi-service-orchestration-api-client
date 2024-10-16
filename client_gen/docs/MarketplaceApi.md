@@ -1,4 +1,4 @@
-# inno_nbi_api.MarketplaceApi
+# openapi_client.MarketplaceApi
 
 All URIs are relative to *https://YOURENV.envs.nearbycomputing.com*
 
@@ -17,22 +17,22 @@ Retrieve specific block chart details from the marketplace
 
 
 ```python
-import inno_nbi_api
-from inno_nbi_api.models.fetch_block_chart_response import FetchBlockChartResponse
-from inno_nbi_api.rest import ApiException
+import openapi_client
+from openapi_client.models.fetch_block_chart_response import FetchBlockChartResponse
+from openapi_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://YOURENV.envs.nearbycomputing.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = inno_nbi_api.Configuration(
+configuration = openapi_client.Configuration(
     host = "https://YOURENV.envs.nearbycomputing.com"
 )
 
 
 # Enter a context with an instance of the API client
-with inno_nbi_api.ApiClient(configuration) as api_client:
+with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = inno_nbi_api.MarketplaceApi(api_client)
+    api_instance = openapi_client.MarketplaceApi(api_client)
     block_name = 'block_name_example' # str | The unique name of the BlockChart to retrieve.
     block_version = 'block_version_example' # str | The version of the BlockChart to retrieve.
 
@@ -91,22 +91,22 @@ List all available block charts in the marketplace
 
 
 ```python
-import inno_nbi_api
-from inno_nbi_api.models.marketplace_charts_response import MarketplaceChartsResponse
-from inno_nbi_api.rest import ApiException
+import openapi_client
+from openapi_client.models.marketplace_charts_response import MarketplaceChartsResponse
+from openapi_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://YOURENV.envs.nearbycomputing.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = inno_nbi_api.Configuration(
+configuration = openapi_client.Configuration(
     host = "https://YOURENV.envs.nearbycomputing.com"
 )
 
 
 # Enter a context with an instance of the API client
-with inno_nbi_api.ApiClient(configuration) as api_client:
+with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = inno_nbi_api.MarketplaceApi(api_client)
+    api_instance = openapi_client.MarketplaceApi(api_client)
 
     try:
         # List all available block charts in the marketplace

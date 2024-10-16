@@ -18,18 +18,23 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from inno_nbi_api.models.site import Site
+from openapi_client.models.okto_status import OktoStatus
 from typing import Optional, Set
 from typing_extensions import Self
 
-class SiteResponse(BaseModel):
+class OktoResource(BaseModel):
     """
-    SiteResponse
+    OktoResource
     """ # noqa: E501
-    site: Optional[Site] = None
-    __properties: ClassVar[List[str]] = ["site"]
+    id: Optional[StrictStr] = None
+    name: Optional[StrictStr] = None
+    kind: Optional[StrictStr] = None
+    status: Optional[OktoStatus] = None
+    namespace: Optional[StrictStr] = None
+    manifest: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["id", "name", "kind", "status", "namespace", "manifest"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -49,7 +54,7 @@ class SiteResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of SiteResponse from a JSON string"""
+        """Create an instance of OktoResource from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -70,14 +75,11 @@ class SiteResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of site
-        if self.site:
-            _dict['site'] = self.site.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of SiteResponse from a dict"""
+        """Create an instance of OktoResource from a dict"""
         if obj is None:
             return None
 
@@ -85,7 +87,12 @@ class SiteResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "site": Site.from_dict(obj["site"]) if obj.get("site") is not None else None
+            "id": obj.get("id"),
+            "name": obj.get("name"),
+            "kind": obj.get("kind"),
+            "status": obj.get("status"),
+            "namespace": obj.get("namespace"),
+            "manifest": obj.get("manifest")
         })
         return _obj
 

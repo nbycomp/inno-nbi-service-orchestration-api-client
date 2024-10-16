@@ -12,14 +12,10 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+
 import unittest
-from inno_nbi_api.models.device import Device
-from inno_nbi_api.models.device_tags_inner import DeviceTagsInner
-from inno_nbi_api.models.device_position import DevicePosition
-from inno_nbi_api.models.device_progress import DeviceProgress
-from inno_nbi_api.models.device_cloud_resource_chart import DeviceCloudResourceChart
-from inno_nbi_api.models.chart_key import ChartKey
-from inno_nbi_api.models.device_cloud_resource_chart_latest_config_inner import DeviceCloudResourceChartLatestConfigInner
+
+from openapi_client.models.device import Device
 
 class TestDevice(unittest.TestCase):
     """Device unit test stubs"""
@@ -35,83 +31,50 @@ class TestDevice(unittest.TestCase):
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
+        # uncomment below to create an instance of `Device`
+        """
+        model = Device()
         if include_optional:
             return Device(
-                id='1',
-                tags=[
-                    DeviceTagsInner(
-                        key='key1',
-                        value='value1'
-                    )
-                ],
-                display_name='Test Device',
-                position=DevicePosition(
-                    lat=1.337,
-                    lng=1.337
-                ),
-                specs='test_specs',
-                status='test_status',
-                progress=DeviceProgress(
-                    step=56,
-                    goal=56
-                ),
-                site='test_site',
-                cloud_resource_chart=DeviceCloudResourceChart(
-                    key=ChartKey(
-                        name='test_chart',
-                        version='1.0'
-                    ),
-                    latest_config=[
-                        DeviceCloudResourceChartLatestConfigInner(
-                            label='test_label',
-                            value='test_value',
-                            json_type='string',
-                            required=True,
-                            redacted=True
-                        )
-                    ]
-                ),
-                org='test_org'
+                id = '',
+                tags = [
+                    openapi_client.models.device_tags_inner.Device_tags_inner(
+                        key = '', 
+                        value = '', )
+                    ],
+                display_name = '',
+                position = openapi_client.models.device_position.Device_position(
+                    lat = 1.337, 
+                    lng = 1.337, ),
+                specs = '',
+                status = '',
+                progress = openapi_client.models.device_progress.Device_progress(
+                    step = 56, 
+                    goal = 56, ),
+                site = '',
+                cloud_resource_chart = openapi_client.models.device_cloud_resource_chart.Device_cloudResourceChart(
+                    key = openapi_client.models.chart_key.ChartKey(
+                        name = '', 
+                        version = '', ), 
+                    latest_config = [
+                        openapi_client.models.device_cloud_resource_chart_latest_config_inner.Device_cloudResourceChart_latestConfig_inner(
+                            label = '', 
+                            value = '', 
+                            json_type = '', 
+                            required = True, 
+                            redacted = True, )
+                        ], ),
+                org = ''
             )
         else:
             return Device(
-                id='1'
-            )
+        )
+        """
 
     def testDevice(self):
         """Test Device"""
-        inst_req_only = self.make_instance(include_optional=False)
-        self.assertEqual(inst_req_only.id, '1')
-        self.assertIsNone(inst_req_only.tags)
-        self.assertIsNone(inst_req_only.display_name)
-        self.assertIsNone(inst_req_only.position)
-        self.assertIsNone(inst_req_only.specs)
-        self.assertIsNone(inst_req_only.status)
-        self.assertIsNone(inst_req_only.progress)
-        self.assertIsNone(inst_req_only.site)
-        self.assertIsNone(inst_req_only.cloud_resource_chart)
-        self.assertIsNone(inst_req_only.org)
-
-        inst_req_and_optional = self.make_instance(include_optional=True)
-        self.assertEqual(inst_req_and_optional.id, '1')
-        self.assertEqual(inst_req_and_optional.tags[0].key, 'key1')
-        self.assertEqual(inst_req_and_optional.tags[0].value, 'value1')
-        self.assertEqual(inst_req_and_optional.display_name, 'Test Device')
-        self.assertEqual(inst_req_and_optional.position.lat, 1.337)
-        self.assertEqual(inst_req_and_optional.position.lng, 1.337)
-        self.assertEqual(inst_req_and_optional.specs, 'test_specs')
-        self.assertEqual(inst_req_and_optional.status, 'test_status')
-        self.assertEqual(inst_req_and_optional.progress.step, 56)
-        self.assertEqual(inst_req_and_optional.progress.goal, 56)
-        self.assertEqual(inst_req_and_optional.site, 'test_site')
-        self.assertEqual(inst_req_and_optional.cloud_resource_chart.key.name, 'test_chart')
-        self.assertEqual(inst_req_and_optional.cloud_resource_chart.key.version, '1.0')
-        self.assertEqual(inst_req_and_optional.cloud_resource_chart.latest_config[0].label, 'test_label')
-        self.assertEqual(inst_req_and_optional.cloud_resource_chart.latest_config[0].value, 'test_value')
-        self.assertEqual(inst_req_and_optional.cloud_resource_chart.latest_config[0].json_type, 'string')
-        self.assertTrue(inst_req_and_optional.cloud_resource_chart.latest_config[0].required)
-        self.assertTrue(inst_req_and_optional.cloud_resource_chart.latest_config[0].redacted)
-        self.assertEqual(inst_req_and_optional.org, 'test_org')
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

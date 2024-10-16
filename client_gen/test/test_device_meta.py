@@ -15,10 +15,10 @@
 
 import unittest
 
-from openapi_client.models.deploy_service_chain_args import DeployServiceChainArgs
+from openapi_client.models.device_meta import DeviceMeta
 
-class TestDeployServiceChainArgs(unittest.TestCase):
-    """DeployServiceChainArgs unit test stubs"""
+class TestDeviceMeta(unittest.TestCase):
+    """DeviceMeta unit test stubs"""
 
     def setUp(self):
         pass
@@ -26,32 +26,26 @@ class TestDeployServiceChainArgs(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> DeployServiceChainArgs:
-        """Test DeployServiceChainArgs
+    def make_instance(self, include_optional) -> DeviceMeta:
+        """Test DeviceMeta
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `DeployServiceChainArgs`
+        # uncomment below to create an instance of `DeviceMeta`
         """
-        model = DeployServiceChainArgs()
+        model = DeviceMeta()
         if include_optional:
-            return DeployServiceChainArgs(
-                name = '',
-                blocks = [
-                    openapi_client.models.block_args_deploy.BlockArgsDeploy(
-                        display_name = '', 
-                        block_chart_name = '', 
-                        block_chart_version = '', 
-                        site_id = '', )
-                    ]
+            return DeviceMeta(
+                id = '',
+                type = 'UNKNOWN'
             )
         else:
-            return DeployServiceChainArgs(
+            return DeviceMeta(
         )
         """
 
-    def testDeployServiceChainArgs(self):
-        """Test DeployServiceChainArgs"""
+    def testDeviceMeta(self):
+        """Test DeviceMeta"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

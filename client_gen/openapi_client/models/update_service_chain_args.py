@@ -18,19 +18,20 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from inno_nbi_api.models.block_args_deploy import BlockArgsDeploy
+from openapi_client.models.block_args_update import BlockArgsUpdate
 from typing import Optional, Set
 from typing_extensions import Self
 
-class DeployServiceChainArgs(BaseModel):
+class UpdateServiceChainArgs(BaseModel):
     """
-    DeployServiceChainArgs
+    Arguments to update a service chain including identification and block configuration details.
     """ # noqa: E501
-    name: Optional[StrictStr] = None
-    blocks: Optional[List[BlockArgsDeploy]] = None
-    __properties: ClassVar[List[str]] = ["name", "blocks"]
+    id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the service chain to be updated.")
+    name: Optional[StrictStr] = Field(default=None, description="The name of the service chain.")
+    blocks: Optional[List[BlockArgsUpdate]] = Field(default=None, description="A list of blocks to be updated or added to the service chain.")
+    __properties: ClassVar[List[str]] = ["id", "name", "blocks"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +51,7 @@ class DeployServiceChainArgs(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of DeployServiceChainArgs from a JSON string"""
+        """Create an instance of UpdateServiceChainArgs from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -82,7 +83,7 @@ class DeployServiceChainArgs(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of DeployServiceChainArgs from a dict"""
+        """Create an instance of UpdateServiceChainArgs from a dict"""
         if obj is None:
             return None
 
@@ -90,8 +91,9 @@ class DeployServiceChainArgs(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "id": obj.get("id"),
             "name": obj.get("name"),
-            "blocks": [BlockArgsDeploy.from_dict(_item) for _item in obj["blocks"]] if obj.get("blocks") is not None else None
+            "blocks": [BlockArgsUpdate.from_dict(_item) for _item in obj["blocks"]] if obj.get("blocks") is not None else None
         })
         return _obj
 

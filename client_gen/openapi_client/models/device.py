@@ -18,28 +18,30 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from inno_nbi_api.models.okto_status import OktoStatus
+from openapi_client.models.device_cloud_resource_chart import DeviceCloudResourceChart
+from openapi_client.models.device_position import DevicePosition
+from openapi_client.models.device_progress import DeviceProgress
+from openapi_client.models.device_tags_inner import DeviceTagsInner
 from typing import Optional, Set
 from typing_extensions import Self
 
-class Block(BaseModel):
+class Device(BaseModel):
     """
-    Block
+    Device
     """ # noqa: E501
     id: Optional[StrictStr] = None
+    tags: Optional[List[DeviceTagsInner]] = None
     display_name: Optional[StrictStr] = Field(default=None, alias="displayName")
-    owner: Optional[StrictStr] = None
+    position: Optional[DevicePosition] = None
+    specs: Optional[StrictStr] = None
+    status: Optional[StrictStr] = None
+    progress: Optional[DeviceProgress] = None
+    site: Optional[StrictStr] = None
+    cloud_resource_chart: Optional[DeviceCloudResourceChart] = Field(default=None, alias="cloudResourceChart")
     org: Optional[StrictStr] = None
-    blockchart_name: Optional[StrictStr] = Field(default=None, alias="blockchartName")
-    blockchart_version: Optional[StrictStr] = Field(default=None, alias="blockchartVersion")
-    blockchart_values: Optional[StrictStr] = Field(default=None, alias="blockchartValues")
-    status: Optional[OktoStatus] = None
-    created_at: Optional[datetime] = None
-    device_ids: Optional[List[StrictStr]] = Field(default=None, alias="deviceIDs")
-    __properties: ClassVar[List[str]] = ["id", "displayName", "owner", "org", "blockchartName", "blockchartVersion", "blockchartValues", "status", "created_at", "deviceIDs"]
+    __properties: ClassVar[List[str]] = ["id", "tags", "displayName", "position", "specs", "status", "progress", "site", "cloudResourceChart", "org"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -59,7 +61,7 @@ class Block(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Block from a JSON string"""
+        """Create an instance of Device from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -80,11 +82,27 @@ class Block(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in tags (list)
+        _items = []
+        if self.tags:
+            for _item in self.tags:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['tags'] = _items
+        # override the default output from pydantic by calling `to_dict()` of position
+        if self.position:
+            _dict['position'] = self.position.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of progress
+        if self.progress:
+            _dict['progress'] = self.progress.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of cloud_resource_chart
+        if self.cloud_resource_chart:
+            _dict['cloudResourceChart'] = self.cloud_resource_chart.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Block from a dict"""
+        """Create an instance of Device from a dict"""
         if obj is None:
             return None
 
@@ -93,15 +111,15 @@ class Block(BaseModel):
 
         _obj = cls.model_validate({
             "id": obj.get("id"),
+            "tags": [DeviceTagsInner.from_dict(_item) for _item in obj["tags"]] if obj.get("tags") is not None else None,
             "displayName": obj.get("displayName"),
-            "owner": obj.get("owner"),
-            "org": obj.get("org"),
-            "blockchartName": obj.get("blockchartName"),
-            "blockchartVersion": obj.get("blockchartVersion"),
-            "blockchartValues": obj.get("blockchartValues"),
+            "position": DevicePosition.from_dict(obj["position"]) if obj.get("position") is not None else None,
+            "specs": obj.get("specs"),
             "status": obj.get("status"),
-            "created_at": obj.get("created_at"),
-            "deviceIDs": obj.get("deviceIDs")
+            "progress": DeviceProgress.from_dict(obj["progress"]) if obj.get("progress") is not None else None,
+            "site": obj.get("site"),
+            "cloudResourceChart": DeviceCloudResourceChart.from_dict(obj["cloudResourceChart"]) if obj.get("cloudResourceChart") is not None else None,
+            "org": obj.get("org")
         })
         return _obj
 

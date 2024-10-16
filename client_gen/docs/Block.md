@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from inno_nbi_api.models.block import Block
+from openapi_client.models.block import Block
 
 # TODO update the JSON string below
 json = "{}"

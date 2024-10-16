@@ -12,9 +12,10 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+
 import unittest
-from inno_nbi_api.models.marketplace_charts_response import MarketplaceChartsResponse
-from inno_nbi_api.models.chart_repo_index_entry import ChartRepoIndexEntry
+
+from openapi_client.models.marketplace_charts_response import MarketplaceChartsResponse
 
 class TestMarketplaceChartsResponse(unittest.TestCase):
     """MarketplaceChartsResponse unit test stubs"""
@@ -30,42 +31,35 @@ class TestMarketplaceChartsResponse(unittest.TestCase):
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
+        # uncomment below to create an instance of `MarketplaceChartsResponse`
+        """
+        model = MarketplaceChartsResponse()
         if include_optional:
             return MarketplaceChartsResponse(
-                charts=[
-                    ChartRepoIndexEntry(
-                        id='chart1',
-                        name='Test Chart',
-                        display_name='Test Chart Display Name',
-                        description='Test Description',
-                        vendor='Test Vendor',
-                        categories=['category1'],
-                        all_versions=['v1.0', 'v2.0']
-                    )
-                ]
+                charts = [
+                    openapi_client.models.chart_repo_index_entry.ChartRepoIndexEntry(
+                        id = '', 
+                        name = '', 
+                        display_name = '', 
+                        description = '', 
+                        vendor = '', 
+                        categories = [
+                            ''
+                            ], 
+                        all_versions = [
+                            ''
+                            ], )
+                    ]
             )
         else:
-            return MarketplaceChartsResponse()
+            return MarketplaceChartsResponse(
+        )
+        """
 
-    def testMarketplaceChartsResponse_required_only(self):
-        """Test MarketplaceChartsResponse with only required params"""
-        inst_req_only = self.make_instance(include_optional=False)
-        self.assertIsNone(inst_req_only.charts)
-
-    def testMarketplaceChartsResponse_required_and_optional(self):
-        """Test MarketplaceChartsResponse with required and optional params"""
-        inst_req_and_optional = self.make_instance(include_optional=True)
-        self.assertIsNotNone(inst_req_and_optional.charts)
-        self.assertEqual(len(inst_req_and_optional.charts), 1)
-
-        chart = inst_req_and_optional.charts[0]
-        self.assertEqual(chart.id, 'chart1')
-        self.assertEqual(chart.name, 'Test Chart')
-        self.assertEqual(chart.display_name, 'Test Chart Display Name')
-        self.assertEqual(chart.description, 'Test Description')
-        self.assertEqual(chart.vendor, 'Test Vendor')
-        self.assertEqual(chart.categories, ['category1'])
-        self.assertEqual(chart.all_versions, ['v1.0', 'v2.0'])
+    def testMarketplaceChartsResponse(self):
+        """Test MarketplaceChartsResponse"""
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

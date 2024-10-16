@@ -8,12 +8,12 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** | The unique identifier of the service chain to be updated. | [optional] 
 **name** | **str** | The name of the service chain. | [optional] 
-**blocks** | [**List[BlockArgs]**](BlockArgs.md) | A list of blocks to be updated or added to the service chain. | [optional] 
+**blocks** | [**List[BlockArgsUpdate]**](BlockArgsUpdate.md) | A list of blocks to be updated or added to the service chain. | [optional] 
 
 ## Example
 
 ```python
-from inno_nbi_api.models.update_service_chain_args import UpdateServiceChainArgs
+from openapi_client.models.update_service_chain_args import UpdateServiceChainArgs
 
 # TODO update the JSON string below
 json = "{}"

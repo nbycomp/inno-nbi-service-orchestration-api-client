@@ -4,23 +4,6 @@
 # Use this file to prevent files from being overwritten by the generator.
 # The patterns follow closely to .gitignore or .dockerignore.
 
-
-# Ignore the docs folder
-docs/**
-
-# Ignore the test folder
-test/**
-
-# Ignore the main README file
-README.me
-
-# Ignore the test requirements file
-test-requirements.txt
-
-
-
-###################### IGNORING INSTRUCTIONS ##########################
-
 # As an example, the C# client generator defines ApiClient.cs.
 # You can make changes and tell OpenAPI Generator to ignore just this file by uncommenting the following line:
 #ApiClient.cs

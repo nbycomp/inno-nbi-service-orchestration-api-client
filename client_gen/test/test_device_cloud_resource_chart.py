@@ -12,10 +12,10 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+
 import unittest
-from inno_nbi_api.models.device_cloud_resource_chart import DeviceCloudResourceChart
-from inno_nbi_api.models.chart_key import ChartKey
-from inno_nbi_api.models.device_cloud_resource_chart_latest_config_inner import DeviceCloudResourceChartLatestConfigInner
+
+from openapi_client.models.device_cloud_resource_chart import DeviceCloudResourceChart
 
 class TestDeviceCloudResourceChart(unittest.TestCase):
     """DeviceCloudResourceChart unit test stubs"""
@@ -31,45 +31,32 @@ class TestDeviceCloudResourceChart(unittest.TestCase):
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
+        # uncomment below to create an instance of `DeviceCloudResourceChart`
+        """
+        model = DeviceCloudResourceChart()
         if include_optional:
             return DeviceCloudResourceChart(
-                key=ChartKey(
-                    name='test_name',
-                    version='1.0'
-                ),
-                latest_config=[
-                    DeviceCloudResourceChartLatestConfigInner(
-                        label='test_label',
-                        value='test_value',
-                        json_type='string',
-                        required=True,
-                        redacted=True
-                    )
-                ]
+                key = openapi_client.models.chart_key.ChartKey(
+                    name = '', 
+                    version = '', ),
+                latest_config = [
+                    openapi_client.models.device_cloud_resource_chart_latest_config_inner.Device_cloudResourceChart_latestConfig_inner(
+                        label = '', 
+                        value = '', 
+                        json_type = '', 
+                        required = True, 
+                        redacted = True, )
+                    ]
             )
         else:
             return DeviceCloudResourceChart(
-                key=ChartKey(
-                    name='test_name'
-                )
-            )
+        )
+        """
 
     def testDeviceCloudResourceChart(self):
         """Test DeviceCloudResourceChart"""
-        inst_req_only = self.make_instance(include_optional=False)
-        self.assertEqual(inst_req_only.key.name, 'test_name')
-        self.assertIsNone(inst_req_only.key.version)
-        self.assertIsNone(inst_req_only.latest_config)
-
-        inst_req_and_optional = self.make_instance(include_optional=True)
-        self.assertEqual(inst_req_and_optional.key.name, 'test_name')
-        self.assertEqual(inst_req_and_optional.key.version, '1.0')
-        self.assertIsNotNone(inst_req_and_optional.latest_config)
-        self.assertEqual(inst_req_and_optional.latest_config[0].label, 'test_label')
-        self.assertEqual(inst_req_and_optional.latest_config[0].value, 'test_value')
-        self.assertEqual(inst_req_and_optional.latest_config[0].json_type, 'string')
-        self.assertTrue(inst_req_and_optional.latest_config[0].required)
-        self.assertTrue(inst_req_and_optional.latest_config[0].redacted)
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

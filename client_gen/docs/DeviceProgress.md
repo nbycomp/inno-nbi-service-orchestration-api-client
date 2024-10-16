@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from inno_nbi_api.models.device_progress import DeviceProgress
+from openapi_client.models.device_progress import DeviceProgress
 
 # TODO update the JSON string below
 json = "{}"

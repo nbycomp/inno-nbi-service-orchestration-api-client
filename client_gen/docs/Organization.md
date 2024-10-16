@@ -9,12 +9,12 @@ Name | Type | Description | Notes
 **display_name** | **str** |  | [optional] 
 **description** | **str** |  | [optional] 
 **sites** | **List[str]** |  | [optional] 
-**devices** | **List[str]** |  | [optional] 
+**device_metas** | [**List[DeviceMeta]**](DeviceMeta.md) |  | [optional] 
 
 ## Example
 
 ```python
-from inno_nbi_api.models.organization import Organization
+from openapi_client.models.organization import Organization
 
 # TODO update the JSON string below
 json = "{}"

@@ -18,20 +18,20 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from inno_nbi_api.models.block_args_update import BlockArgsUpdate
+from openapi_client.models.chart_key import ChartKey
+from openapi_client.models.device_cloud_resource_chart_latest_config_inner import DeviceCloudResourceChartLatestConfigInner
 from typing import Optional, Set
 from typing_extensions import Self
 
-class UpdateServiceChainArgs(BaseModel):
+class DeviceCloudResourceChart(BaseModel):
     """
-    Arguments to update a service chain including identification and block configuration details.
+    DeviceCloudResourceChart
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the service chain to be updated.")
-    name: Optional[StrictStr] = Field(default=None, description="The name of the service chain.")
-    blocks: Optional[List[BlockArgsUpdate]] = Field(default=None, description="A list of blocks to be updated or added to the service chain.")
-    __properties: ClassVar[List[str]] = ["id", "name", "blocks"]
+    key: Optional[ChartKey] = None
+    latest_config: Optional[List[DeviceCloudResourceChartLatestConfigInner]] = Field(default=None, alias="latestConfig")
+    __properties: ClassVar[List[str]] = ["key", "latestConfig"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -51,7 +51,7 @@ class UpdateServiceChainArgs(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of UpdateServiceChainArgs from a JSON string"""
+        """Create an instance of DeviceCloudResourceChart from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -72,18 +72,21 @@ class UpdateServiceChainArgs(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in blocks (list)
+        # override the default output from pydantic by calling `to_dict()` of key
+        if self.key:
+            _dict['key'] = self.key.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in latest_config (list)
         _items = []
-        if self.blocks:
-            for _item in self.blocks:
+        if self.latest_config:
+            for _item in self.latest_config:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['blocks'] = _items
+            _dict['latestConfig'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of UpdateServiceChainArgs from a dict"""
+        """Create an instance of DeviceCloudResourceChart from a dict"""
         if obj is None:
             return None
 
@@ -91,9 +94,8 @@ class UpdateServiceChainArgs(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "name": obj.get("name"),
-            "blocks": [BlockArgsUpdate.from_dict(_item) for _item in obj["blocks"]] if obj.get("blocks") is not None else None
+            "key": ChartKey.from_dict(obj["key"]) if obj.get("key") is not None else None,
+            "latestConfig": [DeviceCloudResourceChartLatestConfigInner.from_dict(_item) for _item in obj["latestConfig"]] if obj.get("latestConfig") is not None else None
         })
         return _obj
 

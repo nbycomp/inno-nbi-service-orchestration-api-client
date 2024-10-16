@@ -20,21 +20,17 @@ import json
 
 from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from inno_nbi_api.models.okto_status import OktoStatus
+from openapi_client.models.block_args_deploy import BlockArgsDeploy
 from typing import Optional, Set
 from typing_extensions import Self
 
-class OktoResource(BaseModel):
+class DeployServiceChainArgs(BaseModel):
     """
-    OktoResource
+    DeployServiceChainArgs
     """ # noqa: E501
-    id: Optional[StrictStr] = None
     name: Optional[StrictStr] = None
-    kind: Optional[StrictStr] = None
-    status: Optional[OktoStatus] = None
-    namespace: Optional[StrictStr] = None
-    manifest: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["id", "name", "kind", "status", "namespace", "manifest"]
+    blocks: Optional[List[BlockArgsDeploy]] = None
+    __properties: ClassVar[List[str]] = ["name", "blocks"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -54,7 +50,7 @@ class OktoResource(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of OktoResource from a JSON string"""
+        """Create an instance of DeployServiceChainArgs from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -75,11 +71,18 @@ class OktoResource(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in blocks (list)
+        _items = []
+        if self.blocks:
+            for _item in self.blocks:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['blocks'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of OktoResource from a dict"""
+        """Create an instance of DeployServiceChainArgs from a dict"""
         if obj is None:
             return None
 
@@ -87,12 +90,8 @@ class OktoResource(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
             "name": obj.get("name"),
-            "kind": obj.get("kind"),
-            "status": obj.get("status"),
-            "namespace": obj.get("namespace"),
-            "manifest": obj.get("manifest")
+            "blocks": [BlockArgsDeploy.from_dict(_item) for _item in obj["blocks"]] if obj.get("blocks") is not None else None
         })
         return _obj
 

@@ -18,21 +18,18 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
+from openapi_client.models.site import Site
 from typing import Optional, Set
 from typing_extensions import Self
 
-class BlockArgs(BaseModel):
+class SiteResponse(BaseModel):
     """
-    Defines either a new block to be added or an existing block to be updated within a service chain.
+    SiteResponse
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="ID of a previously-deployed block to update. Providing this parameter implies an update to an existing block; inputs with no ID will be treated as new blocks.")
-    display_name: Optional[StrictStr] = Field(default=None, description="The display name of the block.", alias="displayName")
-    block_chart_name: Optional[StrictStr] = Field(default=None, description="The name of the block chart associated with this block.", alias="blockChartName")
-    block_chart_version: Optional[StrictStr] = Field(default=None, description="The version of the block chart to be used.", alias="blockChartVersion")
-    values: Optional[StrictStr] = Field(default=None, description="A string of values necessary for configuring the block, typically in JSON or YAML format.")
-    __properties: ClassVar[List[str]] = ["id", "displayName", "blockChartName", "blockChartVersion", "values"]
+    site: Optional[Site] = None
+    __properties: ClassVar[List[str]] = ["site"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -52,7 +49,7 @@ class BlockArgs(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of BlockArgs from a JSON string"""
+        """Create an instance of SiteResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,11 +70,14 @@ class BlockArgs(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of site
+        if self.site:
+            _dict['site'] = self.site.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of BlockArgs from a dict"""
+        """Create an instance of SiteResponse from a dict"""
         if obj is None:
             return None
 
@@ -85,11 +85,7 @@ class BlockArgs(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "displayName": obj.get("displayName"),
-            "blockChartName": obj.get("blockChartName"),
-            "blockChartVersion": obj.get("blockChartVersion"),
-            "values": obj.get("values")
+            "site": Site.from_dict(obj["site"]) if obj.get("site") is not None else None
         })
         return _obj
 

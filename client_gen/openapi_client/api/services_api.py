@@ -20,13 +20,13 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictStr
 from typing import List, Optional
 from typing_extensions import Annotated
-from inno_nbi_api.models.deploy_service_chain_args import DeployServiceChainArgs
-from inno_nbi_api.models.service_chain_response import ServiceChainResponse
-from inno_nbi_api.models.update_service_chain_args import UpdateServiceChainArgs
+from openapi_client.models.deploy_service_chain_args import DeployServiceChainArgs
+from openapi_client.models.service_chain_response import ServiceChainResponse
+from openapi_client.models.update_service_chain_args import UpdateServiceChainArgs
 
-from inno_nbi_api.api_client import ApiClient, RequestSerialized
-from inno_nbi_api.api_response import ApiResponse
-from inno_nbi_api.rest import RESTResponseType
+from openapi_client.api_client import ApiClient, RequestSerialized
+from openapi_client.api_response import ApiResponse
+from openapi_client.rest import RESTResponseType
 
 
 class ServicesApi:

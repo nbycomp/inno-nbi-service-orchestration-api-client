@@ -12,10 +12,10 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+
 import unittest
-from datetime import datetime
-from inno_nbi_api.models.service_chain_response_service_chain import ServiceChainResponseServiceChain
-from inno_nbi_api.models.block import Block
+
+from openapi_client.models.service_chain_response_service_chain import ServiceChainResponseServiceChain
 
 class TestServiceChainResponseServiceChain(unittest.TestCase):
     """ServiceChainResponseServiceChain unit test stubs"""
@@ -31,74 +31,43 @@ class TestServiceChainResponseServiceChain(unittest.TestCase):
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
+        # uncomment below to create an instance of `ServiceChainResponseServiceChain`
+        """
+        model = ServiceChainResponseServiceChain()
         if include_optional:
             return ServiceChainResponseServiceChain(
-                id='123',
-                revision=56,
-                name='Test Service Chain',
-                blocks=[
-                    Block(
-                        id='block1',
-                        display_name='Test Block',
-                        owner='owner1',
-                        org='org1',
-                        blockchart_name='blockchart1',
-                        blockchart_version='v1',
-                        blockchart_values='values',
-                        status='OKTOSTATUS_IN_SYNC',
-                        created_at=datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                        device_ids=['device1']
-                    )
-                ],
-                status='ACTIVE',
-                org='org1',
-                owner='owner1',
-                created_at=datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
+                id = '',
+                revision = 56,
+                name = '',
+                blocks = [
+                    openapi_client.models.block.Block(
+                        id = '', 
+                        display_name = '', 
+                        owner = '', 
+                        org = '', 
+                        blockchart_name = '', 
+                        blockchart_version = '', 
+                        blockchart_values = '', 
+                        status = 'OKTOSTATUS_IN_SYNC', 
+                        created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        device_ids = [
+                            ''
+                            ], )
+                    ],
+                status = '',
+                org = '',
+                owner = '',
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
             )
         else:
             return ServiceChainResponseServiceChain(
-                id='123',
-                name='Test Service Chain',
-                status='ACTIVE',
-                org='org1',
-                owner='owner1',
-                created_at=datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
-            )
+        )
+        """
 
-    def testServiceChainResponseServiceChain_required_only(self):
-        """Test ServiceChainResponseServiceChain with only required params"""
-        inst_req_only = self.make_instance(include_optional=False)
-        self.assertEqual(inst_req_only.id, '123')
-        self.assertEqual(inst_req_only.name, 'Test Service Chain')
-        self.assertEqual(inst_req_only.status, 'ACTIVE')
-        self.assertEqual(inst_req_only.org, 'org1')
-        self.assertEqual(inst_req_only.owner, 'owner1')
-        self.assertEqual(inst_req_only.created_at, datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'))
-        self.assertIsNone(inst_req_only.blocks)
-        self.assertIsNone(inst_req_only.revision)
-
-    def testServiceChainResponseServiceChain_required_and_optional(self):
-        """Test ServiceChainResponseServiceChain with required and optional params"""
-        inst_req_and_optional = self.make_instance(include_optional=True)
-        self.assertEqual(inst_req_and_optional.id, '123')
-        self.assertEqual(inst_req_and_optional.revision, 56)
-        self.assertEqual(inst_req_and_optional.name, 'Test Service Chain')
-        self.assertEqual(inst_req_and_optional.status, 'ACTIVE')
-        self.assertEqual(inst_req_and_optional.org, 'org1')
-        self.assertEqual(inst_req_and_optional.owner, 'owner1')
-        self.assertEqual(inst_req_and_optional.created_at, datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'))
-        self.assertIsNotNone(inst_req_and_optional.blocks)
-        self.assertEqual(len(inst_req_and_optional.blocks), 1)
-        self.assertEqual(inst_req_and_optional.blocks[0].id, 'block1')
-        self.assertEqual(inst_req_and_optional.blocks[0].display_name, 'Test Block')
-        self.assertEqual(inst_req_and_optional.blocks[0].owner, 'owner1')
-        self.assertEqual(inst_req_and_optional.blocks[0].org, 'org1')
-        self.assertEqual(inst_req_and_optional.blocks[0].blockchart_name, 'blockchart1')
-        self.assertEqual(inst_req_and_optional.blocks[0].blockchart_version, 'v1')
-        self.assertEqual(inst_req_and_optional.blocks[0].blockchart_values, 'values')
-        self.assertEqual(inst_req_and_optional.blocks[0].status, 'OKTOSTATUS_IN_SYNC')
-        self.assertEqual(inst_req_and_optional.blocks[0].created_at, datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'))
-        self.assertEqual(inst_req_and_optional.blocks[0].device_ids, ['device1'])
+    def testServiceChainResponseServiceChain(self):
+        """Test ServiceChainResponseServiceChain"""
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()
