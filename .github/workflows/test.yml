@@ -2,10 +2,10 @@ name: Client Tests
 on:
   push:
     branches:
-      - master
+      - prod
   pull_request:
     branches:
-      - master
+      - prod
 jobs:
   test:
     runs-on: ubuntu-latest
