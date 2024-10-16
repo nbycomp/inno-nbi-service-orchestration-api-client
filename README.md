@@ -1,39 +1,27 @@
-![image](https://github.com/user-attachments/assets/a1726e23-59a0-430c-b6a0-f07a631db274)
+![NearbyOne Logo](https://github.com/user-attachments/assets/a1726e23-59a0-430c-b6a0-f07a631db274)
 
-# 🚀 NearbyOne innovation north-bound interface (NBI) Client: Your Gateway to Service Orchestration
+# NearbyOne Innovation NBI Client
 
-Welcome to the NearbyOne innovation NBI Client, a powerful Python library that simplifies interaction with the NearbyOne innovation NBI Service Orchestration API. This client provides a seamless interface for managing service chains across cloud and edge computing environments.
+## Overview
 
-## 🌟 Features
+The NearbyOne Innovation NBI (North-Bound Interface) Client is a robust Python library designed to streamline interactions with the NearbyOne Innovation NBI Service Orchestration API. This client facilitates efficient management of service chains across cloud and edge computing environments, providing a seamless interface for deployment, management, and updates.
 
-- 🔐 Secure authentication with Kratos
-- 🏢 Organization management
-- 🖥️ Infrastructure operations
-- 🛒 Marketplace interactions
-- ⚙️ Service deployment and management
+## Key Features
 
-## 🛠️ Setup
+- **Secure Authentication**: Integrated Kratos authentication system
+- **Organization Management**: Comprehensive tools for managing organizational structures
+- **Infrastructure Operations**: Efficient handling of infrastructure-related tasks
+- **Marketplace Integration**: Seamless interaction with the NearbyOne marketplace
+- **Service Lifecycle Management**: Full suite of tools for deploying, updating, and managing services
 
-### Python Environment
+## Installation
 
-1. Ensure you have Python 3.7 or later installed on your system.
+### Prerequisites
 
-2. Create a virtual environment:
-   ```
-   python3 -m venv venv-nbi-client
-   ```
+- Python 3.7 or later
+- pip (Python package manager)
 
-3. Activate the virtual environment:
-   - On Windows:
-     ```
-     nbi-client-env\Scripts\activate
-     ```
-   - On macOS and Linux:
-     ```
-     source nbi-client-env/bin/activate
-     ```
-
-### Installation
+### Steps
 
 1. Clone the repository:
    ```
@@ -41,19 +29,21 @@ Welcome to the NearbyOne innovation NBI Client, a powerful Python library that s
    cd nbi-client
    ```
 
-2. Install the required packages:
+2. Install required packages:
    ```
    pip install -r requirements.txt
    ```
 
-### Environment Variables
+## Environment Setup
 
-1. Create a `.env` file in the root directory of the project:
+1. Create and activate a virtual environment:
    ```
-   touch .env
+   python3 -m venv venv-nbi-client
+   source venv-nbi-client/bin/activate  # On Windows use `venv-nbi-client\Scripts\activate`
    ```
 
-2. Add the following environment variables to the `.env` file:
+2. Configure environment variables:
+   Create a `.env` file in the project root and add the following:
    ```
    NBY_ENV_EMAIL=your-email@example.com
    NBY_ENV_PASSWORD=your-password
@@ -61,84 +51,41 @@ Welcome to the NearbyOne innovation NBI Client, a powerful Python library that s
    NBY_ENV_NAME=your-env-name
    ```
 
-   Replace the values with your actual information:
-   - `NBY_ENV_EMAIL` and `NBY_ENV_PASSWORD`: Use the email and password combination you use to log in to the environment.
-   - `NBY_ENV_NAME`: Extract this from your environment URL. For example, if your URL is `https://nearbyone.innovationlab.nearbycomputing.com`, your env name would be `nearbyone.innovationlab`.
-   - `NBY_ORGANIZATION_ID`: You can find this in the dashboard under the Infrastructure section. Click on your organization name, and you'll see the ID in the details.
+   Replace placeholders with your actual credentials and information.
 
-3. Save the `.env` file.
+## Quick Start Guide
 
-**Important:** Keep your `.env` file secure and never commit it to version control. Add `.env` to your `.gitignore` file to prevent accidental commits.
+For a comprehensive example of how to use the NearbyOne Innovation NBI Client, refer to the `nbi_client_examples.py` file in the project root. This script demonstrates various API calls and can be run directly without any specific parameters.
 
-## 🚀 Quick Start
-
-1. In your Python script or interactive shell, load the environment variables:
-   ```python
-   from dotenv import load_dotenv
-   load_dotenv()
+1. Run the example script:
+   ```
+   python nbi_client_examples.py
    ```
 
-2. Start using the client:
-   ```python
-   from nbi_client import NbiClient
+2. The script will guide you through various API calls, including:
+   - Fetching organizations
+   - Getting site and device details
+   - Listing marketplace charts
+   - Deploying a service
+   - Updating service node ports
+   - Deleting a service
 
-   client = NbiClient()
-   organizations = client.get_organizations()
-   print(f"Your organizations: {organizations}")
-   ```
+For a sample output of what to expect when running the script, refer to `nbi_client_examples_output.txt` in the project root. This file shows the typical responses you should receive from the API calls.
 
-## 🏃‍♂️ Running the Example Script
+For more detailed usage, you can refer to the following sections of the `nbi_client_examples.py` file:
 
-After setting up your environment variables, you can run the example script to test the NBI Client functionality:
+## Advanced Usage
 
-1. Navigate to the project directory:
-   ```
-   cd path/to/nbi-client
-   ```
+For more complex operations and examples, refer to the `examples/` directory in the project repository. These examples cover:
 
-2. Run the example script:
-   ```
-   python client/nbi_client_examples.py
-   ```
+- Service chain deployment and management
+- Infrastructure queries and modifications
+- Marketplace interactions
 
-This script will demonstrate various operations using the NBI Client, including:
-- Fetching organizations
-- Getting site and device details
-- Listing marketplace charts
-- Deploying a service
-- Updating and deleting services
+## API Reference
 
-The script will prompt you to press Enter between each operation, allowing you to observe the results step by step.
+For a comprehensive list of available methods and their parameters, please consult our [API documentation](docs/api_reference.md).
 
-For a sample output of this script, refer to the `nbi_client_examples_output.txt` file in the project directory.
+## Running Tests
 
-## 🔧 Advanced Usage
-
-Check out our [examples](examples/) directory for more advanced use cases, including:
-
-- Deploying service chains
-- Updating existing services
-- Fetching marketplace charts
-- Managing infrastructure
-
-## 📚 API Reference
-
-For a complete list of available methods and their parameters, refer to our [API documentation](docs/api_reference.md).
-
-## 🐛 Troubleshooting
-
-Encountering issues? Check out our [troubleshooting guide](docs/troubleshooting.md) or reach out to our support team.
-
-## 🤝 Contributing
-
-We welcome contributions! Please see our [contributing guidelines](CONTRIBUTING.md) for more information.
-
-## 📄 License
-
-This project is proprietary and confidential. Unauthorized copying, transferring or reproduction of the contents of this project, via any medium is strictly prohibited.
-
-## 🙋‍♀️ Support
-
-For any questions or support needs, please contact our team at support@nearbycomputing.com.
-
-Happy orchestrating! 🎉
+Execute the test suite to ensure everything is functioning correctly:
