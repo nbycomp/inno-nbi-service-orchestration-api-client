@@ -20,7 +20,7 @@ Welcome to the NearbyOne innovation NBI Client, a powerful Python library that s
 
 2. Create a virtual environment:
    ```
-   python -m venv nbi-client-env
+   python3 -m venv venv-nbi-client
    ```
 
 3. Activate the virtual environment:

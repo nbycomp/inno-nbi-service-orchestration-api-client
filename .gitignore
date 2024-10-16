@@ -5,6 +5,7 @@ client/.env
 venv_innonbi/
 nbi-client-env
 tree.txt
+venv-nbi-client
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
