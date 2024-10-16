@@ -39,7 +39,7 @@ class NbiClient:
             exit(1)
 
         config = Configuration(
-            host=f"https://{self.env_name}.envs.nearbycomputing.com/inno-nbi-api",
+            host=f"https://{self.env_name}.nearbycomputing.com/inno-nbi-api",
         )
         self.api_client = ApiClient(configuration=config)
         self.api_client.set_default_header('Authorization', f'Bearer {session_token}')
