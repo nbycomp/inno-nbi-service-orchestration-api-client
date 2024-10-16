@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.models.error_response import ErrorResponse
+from inno_nbi_api.models.error_response import ErrorResponse
 
 class TestErrorResponse(unittest.TestCase):
     """ErrorResponse unit test stubs"""

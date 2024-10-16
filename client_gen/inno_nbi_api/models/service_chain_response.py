@@ -20,7 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from openapi_client.models.service_chain_response_service_chain import ServiceChainResponseServiceChain
+from inno_nbi_api.models.service_chain_response_service_chain import ServiceChainResponseServiceChain
 from typing import Optional, Set
 from typing_extensions import Self
 

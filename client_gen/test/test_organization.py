@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.models.organization import Organization
+from inno_nbi_api.models.organization import Organization
 
 class TestOrganization(unittest.TestCase):
     """Organization unit test stubs"""
@@ -43,7 +43,7 @@ class TestOrganization(unittest.TestCase):
                     ''
                     ],
                 device_metas = [
-                    openapi_client.models.device_meta.DeviceMeta(
+                    inno_nbi_api.models.device_meta.DeviceMeta(
                         id = '', 
                         type = 'UNKNOWN', )
                     ]

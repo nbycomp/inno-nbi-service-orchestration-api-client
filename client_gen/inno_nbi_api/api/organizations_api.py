@@ -18,11 +18,11 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from typing import List
-from openapi_client.models.organization import Organization
+from inno_nbi_api.models.organization import Organization
 
-from openapi_client.api_client import ApiClient, RequestSerialized
-from openapi_client.api_response import ApiResponse
-from openapi_client.rest import RESTResponseType
+from inno_nbi_api.api_client import ApiClient, RequestSerialized
+from inno_nbi_api.api_response import ApiResponse
+from inno_nbi_api.rest import RESTResponseType
 
 
 class OrganizationsApi:

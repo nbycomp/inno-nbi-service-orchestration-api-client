@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.device_cloud_resource_chart import DeviceCloudResourceChart
+from inno_nbi_api.models.device_cloud_resource_chart import DeviceCloudResourceChart
 
 # TODO update the JSON string below
 json = "{}"

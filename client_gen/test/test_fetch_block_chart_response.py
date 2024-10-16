@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.models.fetch_block_chart_response import FetchBlockChartResponse
+from inno_nbi_api.models.fetch_block_chart_response import FetchBlockChartResponse
 
 class TestFetchBlockChartResponse(unittest.TestCase):
     """FetchBlockChartResponse unit test stubs"""

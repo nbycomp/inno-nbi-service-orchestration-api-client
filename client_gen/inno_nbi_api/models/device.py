@@ -20,20 +20,28 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from openapi_client.models.device_meta import DeviceMeta
+from inno_nbi_api.models.device_cloud_resource_chart import DeviceCloudResourceChart
+from inno_nbi_api.models.device_position import DevicePosition
+from inno_nbi_api.models.device_progress import DeviceProgress
+from inno_nbi_api.models.device_tags_inner import DeviceTagsInner
 from typing import Optional, Set
 from typing_extensions import Self
 
-class Organization(BaseModel):
+class Device(BaseModel):
     """
-    Organization
+    Device
     """ # noqa: E501
     id: Optional[StrictStr] = None
+    tags: Optional[List[DeviceTagsInner]] = None
     display_name: Optional[StrictStr] = Field(default=None, alias="displayName")
-    description: Optional[StrictStr] = None
-    sites: Optional[List[StrictStr]] = None
-    device_metas: Optional[List[DeviceMeta]] = None
-    __properties: ClassVar[List[str]] = ["id", "displayName", "description", "sites", "device_metas"]
+    position: Optional[DevicePosition] = None
+    specs: Optional[StrictStr] = None
+    status: Optional[StrictStr] = None
+    progress: Optional[DeviceProgress] = None
+    site: Optional[StrictStr] = None
+    cloud_resource_chart: Optional[DeviceCloudResourceChart] = Field(default=None, alias="cloudResourceChart")
+    org: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["id", "tags", "displayName", "position", "specs", "status", "progress", "site", "cloudResourceChart", "org"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -53,7 +61,7 @@ class Organization(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Organization from a JSON string"""
+        """Create an instance of Device from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -74,18 +82,27 @@ class Organization(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in device_metas (list)
+        # override the default output from pydantic by calling `to_dict()` of each item in tags (list)
         _items = []
-        if self.device_metas:
-            for _item in self.device_metas:
+        if self.tags:
+            for _item in self.tags:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['device_metas'] = _items
+            _dict['tags'] = _items
+        # override the default output from pydantic by calling `to_dict()` of position
+        if self.position:
+            _dict['position'] = self.position.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of progress
+        if self.progress:
+            _dict['progress'] = self.progress.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of cloud_resource_chart
+        if self.cloud_resource_chart:
+            _dict['cloudResourceChart'] = self.cloud_resource_chart.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Organization from a dict"""
+        """Create an instance of Device from a dict"""
         if obj is None:
             return None
 
@@ -94,10 +111,15 @@ class Organization(BaseModel):
 
         _obj = cls.model_validate({
             "id": obj.get("id"),
+            "tags": [DeviceTagsInner.from_dict(_item) for _item in obj["tags"]] if obj.get("tags") is not None else None,
             "displayName": obj.get("displayName"),
-            "description": obj.get("description"),
-            "sites": obj.get("sites"),
-            "device_metas": [DeviceMeta.from_dict(_item) for _item in obj["device_metas"]] if obj.get("device_metas") is not None else None
+            "position": DevicePosition.from_dict(obj["position"]) if obj.get("position") is not None else None,
+            "specs": obj.get("specs"),
+            "status": obj.get("status"),
+            "progress": DeviceProgress.from_dict(obj["progress"]) if obj.get("progress") is not None else None,
+            "site": obj.get("site"),
+            "cloudResourceChart": DeviceCloudResourceChart.from_dict(obj["cloudResourceChart"]) if obj.get("cloudResourceChart") is not None else None,
+            "org": obj.get("org")
         })
         return _obj
 

@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.models.update_service_chain_args import UpdateServiceChainArgs
+from inno_nbi_api.models.update_service_chain_args import UpdateServiceChainArgs
 
 class TestUpdateServiceChainArgs(unittest.TestCase):
     """UpdateServiceChainArgs unit test stubs"""
@@ -39,7 +39,7 @@ class TestUpdateServiceChainArgs(unittest.TestCase):
                 id = '',
                 name = '',
                 blocks = [
-                    openapi_client.models.block_args_update.BlockArgsUpdate(
+                    inno_nbi_api.models.block_args_update.BlockArgsUpdate(
                         id = '', 
                         display_name = '', 
                         block_chart_name = '', 

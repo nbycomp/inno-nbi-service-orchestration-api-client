@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.fetch_block_chart_response import FetchBlockChartResponse
+from inno_nbi_api.models.fetch_block_chart_response import FetchBlockChartResponse
 
 # TODO update the JSON string below
 json = "{}"

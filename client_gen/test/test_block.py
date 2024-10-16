@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.models.block import Block
+from inno_nbi_api.models.block import Block
 
 class TestBlock(unittest.TestCase):
     """Block unit test stubs"""

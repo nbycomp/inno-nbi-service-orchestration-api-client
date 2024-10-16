@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.models.site_response import SiteResponse
+from inno_nbi_api.models.site_response import SiteResponse
 
 class TestSiteResponse(unittest.TestCase):
     """SiteResponse unit test stubs"""
@@ -36,7 +36,7 @@ class TestSiteResponse(unittest.TestCase):
         model = SiteResponse()
         if include_optional:
             return SiteResponse(
-                site = openapi_client.models.site.Site(
+                site = inno_nbi_api.models.site.Site(
                     id = '', 
                     display_name = '', 
                     description = '', 

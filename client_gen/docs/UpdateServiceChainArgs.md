@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.update_service_chain_args import UpdateServiceChainArgs
+from inno_nbi_api.models.update_service_chain_args import UpdateServiceChainArgs
 
 # TODO update the JSON string below
 json = "{}"

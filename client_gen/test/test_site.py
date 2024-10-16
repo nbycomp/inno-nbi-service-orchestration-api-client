@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.models.site import Site
+from inno_nbi_api.models.site import Site
 
 class TestSite(unittest.TestCase):
     """Site unit test stubs"""

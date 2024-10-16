@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.models.chart_key import ChartKey
+from inno_nbi_api.models.chart_key import ChartKey
 
 class TestChartKey(unittest.TestCase):
     """ChartKey unit test stubs"""

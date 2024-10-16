@@ -21,7 +21,7 @@ from setuptools import setup, find_packages  # noqa: H301
 #
 # prerequisite: setuptools
 # http://pypi.python.org/pypi/setuptools
-NAME = "openapi-client"
+NAME = "inno-nbi-api"
 VERSION = "1.0.0"
 PYTHON_REQUIRES = ">=3.7"
 REQUIRES = [
@@ -35,7 +35,7 @@ setup(
     name=NAME,
     version=VERSION,
     description="NBI Service Orchestration API",
-    author="API Support Team NearbyOne",
+    author="API Support Team NBY",
     author_email="support@nearbycomputing.com",
     url="",
     keywords=["OpenAPI", "OpenAPI-Generator", "NBI Service Orchestration API"],
@@ -47,5 +47,5 @@ setup(
     long_description="""\
     Provides a robust interface for orchestrating service chains across cloud and edge computing environments, facilitating deployment, management, and updates of service chains to ensure dynamic, efficient operations across diverse infrastructure setups.
     """,  # noqa: E501
-    package_data={"openapi_client": ["py.typed"]},
+    package_data={"inno_nbi_api": ["py.typed"]},
 )

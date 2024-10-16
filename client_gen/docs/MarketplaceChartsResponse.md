@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.marketplace_charts_response import MarketplaceChartsResponse
+from inno_nbi_api.models.marketplace_charts_response import MarketplaceChartsResponse
 
 # TODO update the JSON string below
 json = "{}"

@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.api.infrastructure_api import InfrastructureApi
+from inno_nbi_api.api.infrastructure_api import InfrastructureApi
 
 
 class TestInfrastructureApi(unittest.TestCase):

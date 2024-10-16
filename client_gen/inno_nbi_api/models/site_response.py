@@ -20,7 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
-from openapi_client.models.site import Site
+from inno_nbi_api.models.site import Site
 from typing import Optional, Set
 from typing_extensions import Self
 

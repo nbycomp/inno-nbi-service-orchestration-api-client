@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.models.device_progress import DeviceProgress
+from inno_nbi_api.models.device_progress import DeviceProgress
 
 class TestDeviceProgress(unittest.TestCase):
     """DeviceProgress unit test stubs"""

@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.models.device_cloud_resource_chart import DeviceCloudResourceChart
+from inno_nbi_api.models.device_cloud_resource_chart import DeviceCloudResourceChart
 
 class TestDeviceCloudResourceChart(unittest.TestCase):
     """DeviceCloudResourceChart unit test stubs"""
@@ -36,11 +36,11 @@ class TestDeviceCloudResourceChart(unittest.TestCase):
         model = DeviceCloudResourceChart()
         if include_optional:
             return DeviceCloudResourceChart(
-                key = openapi_client.models.chart_key.ChartKey(
+                key = inno_nbi_api.models.chart_key.ChartKey(
                     name = '', 
                     version = '', ),
                 latest_config = [
-                    openapi_client.models.device_cloud_resource_chart_latest_config_inner.Device_cloudResourceChart_latestConfig_inner(
+                    inno_nbi_api.models.device_cloud_resource_chart_latest_config_inner.Device_cloudResourceChart_latestConfig_inner(
                         label = '', 
                         value = '', 
                         json_type = '', 

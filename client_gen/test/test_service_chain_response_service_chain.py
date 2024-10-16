@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.models.service_chain_response_service_chain import ServiceChainResponseServiceChain
+from inno_nbi_api.models.service_chain_response_service_chain import ServiceChainResponseServiceChain
 
 class TestServiceChainResponseServiceChain(unittest.TestCase):
     """ServiceChainResponseServiceChain unit test stubs"""
@@ -40,7 +40,7 @@ class TestServiceChainResponseServiceChain(unittest.TestCase):
                 revision = 56,
                 name = '',
                 blocks = [
-                    openapi_client.models.block.Block(
+                    inno_nbi_api.models.block.Block(
                         id = '', 
                         display_name = '', 
                         owner = '', 

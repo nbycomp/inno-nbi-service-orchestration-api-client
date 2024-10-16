@@ -18,28 +18,18 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
-from openapi_client.models.okto_status import OktoStatus
+from inno_nbi_api.models.device import Device
 from typing import Optional, Set
 from typing_extensions import Self
 
-class Block(BaseModel):
+class DeviceResponse(BaseModel):
     """
-    Block
+    DeviceResponse
     """ # noqa: E501
-    id: Optional[StrictStr] = None
-    display_name: Optional[StrictStr] = Field(default=None, alias="displayName")
-    owner: Optional[StrictStr] = None
-    org: Optional[StrictStr] = None
-    blockchart_name: Optional[StrictStr] = Field(default=None, alias="blockchartName")
-    blockchart_version: Optional[StrictStr] = Field(default=None, alias="blockchartVersion")
-    blockchart_values: Optional[StrictStr] = Field(default=None, alias="blockchartValues")
-    status: Optional[OktoStatus] = None
-    created_at: Optional[datetime] = None
-    device_ids: Optional[List[StrictStr]] = Field(default=None, alias="deviceIDs")
-    __properties: ClassVar[List[str]] = ["id", "displayName", "owner", "org", "blockchartName", "blockchartVersion", "blockchartValues", "status", "created_at", "deviceIDs"]
+    device: Optional[Device] = None
+    __properties: ClassVar[List[str]] = ["device"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -59,7 +49,7 @@ class Block(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Block from a JSON string"""
+        """Create an instance of DeviceResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -80,11 +70,14 @@ class Block(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of device
+        if self.device:
+            _dict['device'] = self.device.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Block from a dict"""
+        """Create an instance of DeviceResponse from a dict"""
         if obj is None:
             return None
 
@@ -92,16 +85,7 @@ class Block(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "displayName": obj.get("displayName"),
-            "owner": obj.get("owner"),
-            "org": obj.get("org"),
-            "blockchartName": obj.get("blockchartName"),
-            "blockchartVersion": obj.get("blockchartVersion"),
-            "blockchartValues": obj.get("blockchartValues"),
-            "status": obj.get("status"),
-            "created_at": obj.get("created_at"),
-            "deviceIDs": obj.get("deviceIDs")
+            "device": Device.from_dict(obj["device"]) if obj.get("device") is not None else None
         })
         return _obj
 

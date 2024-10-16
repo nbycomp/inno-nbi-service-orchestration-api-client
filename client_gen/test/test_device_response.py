@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.models.device_response import DeviceResponse
+from inno_nbi_api.models.device_response import DeviceResponse
 
 class TestDeviceResponse(unittest.TestCase):
     """DeviceResponse unit test stubs"""
@@ -36,29 +36,29 @@ class TestDeviceResponse(unittest.TestCase):
         model = DeviceResponse()
         if include_optional:
             return DeviceResponse(
-                device = openapi_client.models.device.Device(
+                device = inno_nbi_api.models.device.Device(
                     id = '', 
                     tags = [
-                        openapi_client.models.device_tags_inner.Device_tags_inner(
+                        inno_nbi_api.models.device_tags_inner.Device_tags_inner(
                             key = '', 
                             value = '', )
                         ], 
                     display_name = '', 
-                    position = openapi_client.models.device_position.Device_position(
+                    position = inno_nbi_api.models.device_position.Device_position(
                         lat = 1.337, 
                         lng = 1.337, ), 
                     specs = '', 
                     status = '', 
-                    progress = openapi_client.models.device_progress.Device_progress(
+                    progress = inno_nbi_api.models.device_progress.Device_progress(
                         step = 56, 
                         goal = 56, ), 
                     site = '', 
-                    cloud_resource_chart = openapi_client.models.device_cloud_resource_chart.Device_cloudResourceChart(
-                        key = openapi_client.models.chart_key.ChartKey(
+                    cloud_resource_chart = inno_nbi_api.models.device_cloud_resource_chart.Device_cloudResourceChart(
+                        key = inno_nbi_api.models.chart_key.ChartKey(
                             name = '', 
                             version = '', ), 
                         latest_config = [
-                            openapi_client.models.device_cloud_resource_chart_latest_config_inner.Device_cloudResourceChart_latestConfig_inner(
+                            inno_nbi_api.models.device_cloud_resource_chart_latest_config_inner.Device_cloudResourceChart_latestConfig_inner(
                                 label = '', 
                                 value = '', 
                                 json_type = '', 

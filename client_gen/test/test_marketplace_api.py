@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.api.marketplace_api import MarketplaceApi
+from inno_nbi_api.api.marketplace_api import MarketplaceApi
 
 
 class TestMarketplaceApi(unittest.TestCase):

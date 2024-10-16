@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.block_args_deploy import BlockArgsDeploy
+from inno_nbi_api.models.block_args_deploy import BlockArgsDeploy
 
 # TODO update the JSON string below
 json = "{}"

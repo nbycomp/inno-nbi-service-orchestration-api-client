@@ -1,4 +1,4 @@
-# openapi_client.InfrastructureApi
+# inno_nbi_api.InfrastructureApi
 
 All URIs are relative to *https://YOURENV.envs.nearbycomputing.com*
 
@@ -17,22 +17,22 @@ Retrieve details for a specific device within an organization
 
 
 ```python
-import openapi_client
-from openapi_client.models.device_response import DeviceResponse
-from openapi_client.rest import ApiException
+import inno_nbi_api
+from inno_nbi_api.models.device_response import DeviceResponse
+from inno_nbi_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://YOURENV.envs.nearbycomputing.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = inno_nbi_api.Configuration(
     host = "https://YOURENV.envs.nearbycomputing.com"
 )
 
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with inno_nbi_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.InfrastructureApi(api_client)
+    api_instance = inno_nbi_api.InfrastructureApi(api_client)
     device_id = 'device_id_example' # str | The unique identifier of the device to fetch details for.
 
     try:
@@ -89,22 +89,22 @@ Retrieve details for a specific site within an organization
 
 
 ```python
-import openapi_client
-from openapi_client.models.site_response import SiteResponse
-from openapi_client.rest import ApiException
+import inno_nbi_api
+from inno_nbi_api.models.site_response import SiteResponse
+from inno_nbi_api.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://YOURENV.envs.nearbycomputing.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = inno_nbi_api.Configuration(
     host = "https://YOURENV.envs.nearbycomputing.com"
 )
 
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with inno_nbi_api.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.InfrastructureApi(api_client)
+    api_instance = inno_nbi_api.InfrastructureApi(api_client)
     site_id = 'site_id_example' # str | The unique identifier of the site to fetch.
 
     try:

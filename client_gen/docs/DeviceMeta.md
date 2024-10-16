@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.device_meta import DeviceMeta
+from inno_nbi_api.models.device_meta import DeviceMeta
 
 # TODO update the JSON string below
 json = "{}"

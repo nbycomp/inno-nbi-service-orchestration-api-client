@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.models.device_tags_inner import DeviceTagsInner
+from inno_nbi_api.models.device_tags_inner import DeviceTagsInner
 
 class TestDeviceTagsInner(unittest.TestCase):
     """DeviceTagsInner unit test stubs"""

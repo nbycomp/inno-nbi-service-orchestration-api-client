@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.models.deploy_service_chain_args import DeployServiceChainArgs
+from inno_nbi_api.models.deploy_service_chain_args import DeployServiceChainArgs
 
 class TestDeployServiceChainArgs(unittest.TestCase):
     """DeployServiceChainArgs unit test stubs"""
@@ -38,7 +38,7 @@ class TestDeployServiceChainArgs(unittest.TestCase):
             return DeployServiceChainArgs(
                 name = '',
                 blocks = [
-                    openapi_client.models.block_args_deploy.BlockArgsDeploy(
+                    inno_nbi_api.models.block_args_deploy.BlockArgsDeploy(
                         display_name = '', 
                         block_chart_name = '', 
                         block_chart_version = '', 

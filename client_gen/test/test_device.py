@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.models.device import Device
+from inno_nbi_api.models.device import Device
 
 class TestDevice(unittest.TestCase):
     """Device unit test stubs"""
@@ -38,26 +38,26 @@ class TestDevice(unittest.TestCase):
             return Device(
                 id = '',
                 tags = [
-                    openapi_client.models.device_tags_inner.Device_tags_inner(
+                    inno_nbi_api.models.device_tags_inner.Device_tags_inner(
                         key = '', 
                         value = '', )
                     ],
                 display_name = '',
-                position = openapi_client.models.device_position.Device_position(
+                position = inno_nbi_api.models.device_position.Device_position(
                     lat = 1.337, 
                     lng = 1.337, ),
                 specs = '',
                 status = '',
-                progress = openapi_client.models.device_progress.Device_progress(
+                progress = inno_nbi_api.models.device_progress.Device_progress(
                     step = 56, 
                     goal = 56, ),
                 site = '',
-                cloud_resource_chart = openapi_client.models.device_cloud_resource_chart.Device_cloudResourceChart(
-                    key = openapi_client.models.chart_key.ChartKey(
+                cloud_resource_chart = inno_nbi_api.models.device_cloud_resource_chart.Device_cloudResourceChart(
+                    key = inno_nbi_api.models.chart_key.ChartKey(
                         name = '', 
                         version = '', ), 
                     latest_config = [
-                        openapi_client.models.device_cloud_resource_chart_latest_config_inner.Device_cloudResourceChart_latestConfig_inner(
+                        inno_nbi_api.models.device_cloud_resource_chart_latest_config_inner.Device_cloudResourceChart_latestConfig_inner(
                             label = '', 
                             value = '', 
                             json_type = '', 

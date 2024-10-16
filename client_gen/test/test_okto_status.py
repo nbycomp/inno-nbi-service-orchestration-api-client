@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.models.okto_status import OktoStatus
+from inno_nbi_api.models.okto_status import OktoStatus
 
 class TestOktoStatus(unittest.TestCase):
     """OktoStatus unit test stubs"""

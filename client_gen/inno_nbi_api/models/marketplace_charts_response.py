@@ -18,26 +18,18 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
-from openapi_client.models.block import Block
+from inno_nbi_api.models.chart_repo_index_entry import ChartRepoIndexEntry
 from typing import Optional, Set
 from typing_extensions import Self
 
-class ServiceChainResponseServiceChain(BaseModel):
+class MarketplaceChartsResponse(BaseModel):
     """
-    ServiceChainResponseServiceChain
+    MarketplaceChartsResponse
     """ # noqa: E501
-    id: Optional[StrictStr] = None
-    revision: Optional[StrictInt] = None
-    name: Optional[StrictStr] = None
-    blocks: Optional[List[Block]] = None
-    status: Optional[StrictStr] = None
-    org: Optional[StrictStr] = None
-    owner: Optional[StrictStr] = None
-    created_at: Optional[datetime] = Field(default=None, alias="createdAt")
-    __properties: ClassVar[List[str]] = ["id", "revision", "name", "blocks", "status", "org", "owner", "createdAt"]
+    charts: Optional[List[ChartRepoIndexEntry]] = None
+    __properties: ClassVar[List[str]] = ["charts"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -57,7 +49,7 @@ class ServiceChainResponseServiceChain(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ServiceChainResponseServiceChain from a JSON string"""
+        """Create an instance of MarketplaceChartsResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -78,18 +70,18 @@ class ServiceChainResponseServiceChain(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in blocks (list)
+        # override the default output from pydantic by calling `to_dict()` of each item in charts (list)
         _items = []
-        if self.blocks:
-            for _item in self.blocks:
+        if self.charts:
+            for _item in self.charts:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['blocks'] = _items
+            _dict['charts'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ServiceChainResponseServiceChain from a dict"""
+        """Create an instance of MarketplaceChartsResponse from a dict"""
         if obj is None:
             return None
 
@@ -97,14 +89,7 @@ class ServiceChainResponseServiceChain(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "revision": obj.get("revision"),
-            "name": obj.get("name"),
-            "blocks": [Block.from_dict(_item) for _item in obj["blocks"]] if obj.get("blocks") is not None else None,
-            "status": obj.get("status"),
-            "org": obj.get("org"),
-            "owner": obj.get("owner"),
-            "createdAt": obj.get("createdAt")
+            "charts": [ChartRepoIndexEntry.from_dict(_item) for _item in obj["charts"]] if obj.get("charts") is not None else None
         })
         return _obj
 

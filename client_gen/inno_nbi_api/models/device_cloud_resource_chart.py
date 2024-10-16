@@ -18,18 +18,20 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from openapi_client.models.device import Device
+from inno_nbi_api.models.chart_key import ChartKey
+from inno_nbi_api.models.device_cloud_resource_chart_latest_config_inner import DeviceCloudResourceChartLatestConfigInner
 from typing import Optional, Set
 from typing_extensions import Self
 
-class DeviceResponse(BaseModel):
+class DeviceCloudResourceChart(BaseModel):
     """
-    DeviceResponse
+    DeviceCloudResourceChart
     """ # noqa: E501
-    device: Optional[Device] = None
-    __properties: ClassVar[List[str]] = ["device"]
+    key: Optional[ChartKey] = None
+    latest_config: Optional[List[DeviceCloudResourceChartLatestConfigInner]] = Field(default=None, alias="latestConfig")
+    __properties: ClassVar[List[str]] = ["key", "latestConfig"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -49,7 +51,7 @@ class DeviceResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of DeviceResponse from a JSON string"""
+        """Create an instance of DeviceCloudResourceChart from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -70,14 +72,21 @@ class DeviceResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of device
-        if self.device:
-            _dict['device'] = self.device.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of key
+        if self.key:
+            _dict['key'] = self.key.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in latest_config (list)
+        _items = []
+        if self.latest_config:
+            for _item in self.latest_config:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['latestConfig'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of DeviceResponse from a dict"""
+        """Create an instance of DeviceCloudResourceChart from a dict"""
         if obj is None:
             return None
 
@@ -85,7 +94,8 @@ class DeviceResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "device": Device.from_dict(obj["device"]) if obj.get("device") is not None else None
+            "key": ChartKey.from_dict(obj["key"]) if obj.get("key") is not None else None,
+            "latestConfig": [DeviceCloudResourceChartLatestConfigInner.from_dict(_item) for _item in obj["latestConfig"]] if obj.get("latestConfig") is not None else None
         })
         return _obj
 

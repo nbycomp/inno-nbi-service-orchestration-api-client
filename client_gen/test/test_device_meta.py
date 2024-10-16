@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.models.device_meta import DeviceMeta
+from inno_nbi_api.models.device_meta import DeviceMeta
 
 class TestDeviceMeta(unittest.TestCase):
     """DeviceMeta unit test stubs"""

@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.models.marketplace_charts_response import MarketplaceChartsResponse
+from inno_nbi_api.models.marketplace_charts_response import MarketplaceChartsResponse
 
 class TestMarketplaceChartsResponse(unittest.TestCase):
     """MarketplaceChartsResponse unit test stubs"""
@@ -37,7 +37,7 @@ class TestMarketplaceChartsResponse(unittest.TestCase):
         if include_optional:
             return MarketplaceChartsResponse(
                 charts = [
-                    openapi_client.models.chart_repo_index_entry.ChartRepoIndexEntry(
+                    inno_nbi_api.models.chart_repo_index_entry.ChartRepoIndexEntry(
                         id = '', 
                         name = '', 
                         display_name = '', 

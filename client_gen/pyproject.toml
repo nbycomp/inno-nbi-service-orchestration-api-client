@@ -1,13 +1,13 @@
 [tool.poetry]
-name = "openapi_client"
+name = "inno_nbi_api"
 version = "1.0.0"
 description = "NBI Service Orchestration API"
-authors = ["API Support Team NearbyOne <support@nearbycomputing.com>"]
+authors = ["API Support Team NBY <support@nearbycomputing.com>"]
 license = "Apache 2.0"
 readme = "README.md"
 repository = "https://github.com/GIT_USER_ID/GIT_REPO_ID"
 keywords = ["OpenAPI", "OpenAPI-Generator", "NBI Service Orchestration API"]
-include = ["openapi_client/py.typed"]
+include = ["inno_nbi_api/py.typed"]
 
 [tool.poetry.dependencies]
 python = "^3.7"
@@ -34,7 +34,7 @@ extension-pkg-whitelist = "pydantic"
 
 [tool.mypy]
 files = [
-  "openapi_client",
+  "inno_nbi_api",
   #"test",  # auto-generated tests
   "tests", # hand-written tests
 ]

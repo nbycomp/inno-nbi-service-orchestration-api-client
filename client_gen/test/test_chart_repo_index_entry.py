@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.models.chart_repo_index_entry import ChartRepoIndexEntry
+from inno_nbi_api.models.chart_repo_index_entry import ChartRepoIndexEntry
 
 class TestChartRepoIndexEntry(unittest.TestCase):
     """ChartRepoIndexEntry unit test stubs"""

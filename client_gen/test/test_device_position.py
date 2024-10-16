@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.models.device_position import DevicePosition
+from inno_nbi_api.models.device_position import DevicePosition
 
 class TestDevicePosition(unittest.TestCase):
     """DevicePosition unit test stubs"""

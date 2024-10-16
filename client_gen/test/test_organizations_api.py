@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.api.organizations_api import OrganizationsApi
+from inno_nbi_api.api.organizations_api import OrganizationsApi
 
 
 class TestOrganizationsApi(unittest.TestCase):

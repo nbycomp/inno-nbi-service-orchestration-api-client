@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.okto_resource import OktoResource
+from inno_nbi_api.models.okto_resource import OktoResource
 
 # TODO update the JSON string below
 json = "{}"

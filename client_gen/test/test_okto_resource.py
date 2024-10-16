@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.models.okto_resource import OktoResource
+from inno_nbi_api.models.okto_resource import OktoResource
 
 class TestOktoResource(unittest.TestCase):
     """OktoResource unit test stubs"""

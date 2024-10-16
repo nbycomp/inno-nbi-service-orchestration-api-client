@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.models.block_args_deploy import BlockArgsDeploy
+from inno_nbi_api.models.block_args_deploy import BlockArgsDeploy
 
 class TestBlockArgsDeploy(unittest.TestCase):
     """BlockArgsDeploy unit test stubs"""
