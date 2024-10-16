@@ -1,0 +1,102 @@
+INFO:root:KratosClient - Fetching token...
+INFO:root:KratosClient - Token request successful
+INFO:root:🚀 Testing get_organizations
+INFO:root:Starting test_get_organizations
+INFO:root:Called get_organizations
+INFO:root:Organizations fetched: [Organization(id='<organization_id>', display_name='<org_name>', description='<org_description>', sites=['<site_id>'], device_metas=[DeviceMeta(id='<device_id>', type='<device_type>')])]
+INFO:root:test_get_organizations passed.
+INFO:root:Finished test_get_organizations
+--------------------------------------------------
+
+✅ Organizations fetched! Press Enter to continue to fetch site details...
+INFO:root:🔍 Testing get_site_details
+INFO:root:Starting test_get_site_details for site_id: <site_id>
+INFO:root:Called get_site_details
+INFO:root:Site details fetched: site=Site(id='<site_id>', display_name='<site_name>', description='<site_description>', ancestors=None, sites=None, devices=None, org=None)
+INFO:root:test_get_site_details passed.
+INFO:root:Finished test_get_site_details
+--------------------------------------------------
+
+✅ Site details fetched! Press Enter to continue to fetch device details...
+INFO:root:📡 Testing get_device_details
+INFO:root:Starting test_get_device_details for device_id: <device_id>
+INFO:root:Called get_device_details
+INFO:root:Device details fetched: device=Device(id='<device_id>', tags=[DeviceTagsInner(key='<tag_key>', value='<tag_value>')], display_name='<device_name>', position=DevicePosition(lat=<latitude>, lng=<longitude>), specs=None, status='<device_status>', progress=DeviceProgress(step=<step_number>, goal=<goal_number>), site='<site_id>', cloud_resource_chart=None, org='<organization_id>')
+INFO:root:test_get_device_details passed.
+INFO:root:Finished test_get_device_details
+--------------------------------------------------
+
+✅ Device details fetched! Press Enter to continue to list marketplace charts...
+INFO:root:🛒 Testing list_marketplace_charts
+INFO:root:Starting test_list_marketplace_charts
+INFO:root:Called list_marketplace_charts
+INFO:root:Marketplace charts fetched: [ChartRepoIndexEntry(id='<chart_id>', name='<chart_name>', display_name='<chart_display_name>', description='<chart_description>', vendor='<vendor_name>', categories=['<category>'], all_versions=['<version>'])]
+INFO:root:test_list_marketplace_charts passed.
+INFO:root:Finished test_list_marketplace_charts
+--------------------------------------------------
+
+✅ Marketplace charts listed! Press Enter to continue to fetch block chart...
+INFO:root:📦 Testing fetch_block_chart
+INFO:root:Starting test_fetch_block_chart for <chart_name> version <version>
+INFO:root:Called fetch_block_chart
+INFO:root:Block chart fetched: display_name='<chart_display_name>' description='<chart_description>' version='<version>' chart_yaml='<chart_yaml_content>' overrides_yaml='<overrides_yaml_content>'
+INFO:root:test_fetch_block_chart passed.
+INFO:root:Finished test_fetch_block_chart
+--------------------------------------------------
+
+✅ Block chart fetched! Press Enter to continue to deploy service...
+INFO:root:⚙️ Testing deploy_service
+INFO:root:Starting test_deploy_service
+INFO:root:DeployServiceChainArgs created: name='<service_name>' blocks=[BlockArgsDeploy(display_name='<block_display_name>', block_chart_name='<chart_name>', block_chart_version='<version>', site_id='<site_id>')]
+INFO:root:Called deploy_service
+INFO:root:Deploy service response: "<service_id>"
+INFO:root:test_deploy_service passed.
+INFO:root:Finished test_deploy_service
+--------------------------------------------------
+
+✅ Service deployed! Press Enter to get all deployed services...
+INFO:root:🗂️ Testing get_all_deployed_services
+INFO:root:Starting test_get_all_deployed_services
+INFO:root:Called get_all_deployed_services
+INFO:root:All deployed services fetched: [ServiceChainResponse(service_chain=ServiceChainResponseServiceChain(id='<service_id>', revision=<revision_number>, name='<service_name>', blocks=[Block(id='<block_id>', display_name='<block_display_name>', owner='<owner_id>', org='<organization_id>', blockchart_name='<chart_name>', blockchart_version='<version>', blockchart_values='<blockchart_values_yaml>', status=<OktoStatus.OKTOSTATUS_PROGRESSING: 'OKTOSTATUS_PROGRESSING'>, created_at=datetime.datetime(<timestamp>), device_ids=['<device_id_1>', '<device_id_2>'])], status='OKTOSTATUS_PROGRESSING', org='<organization_id>', owner='<owner_id>', created_at=datetime.datetime(<timestamp>)))]
+INFO:root:test_get_all_deployed_services passed.
+INFO:root:Finished test_get_all_deployed_services
+--------------------------------------------------
+
+✅ All deployed services fetched! Press Enter to fetch details of the first deployed service...
+INFO:root:🔍 Testing get_deployed_service_by_id with service_id: <service_id>
+INFO:root:Starting test_get_deployed_service_by_id for service_id: <service_id>
+INFO:root:Called get_deployed_service
+INFO:root:Deployed service fetched: service_chain=ServiceChainResponseServiceChain(id='<service_id>', revision=<revision_number>, name='<service_name>', blocks=[Block(id='<block_id>', display_name='<block_display_name>', owner='<owner_id>', org='<organization_id>', blockchart_name='<chart_name>', blockchart_version='<version>', blockchart_values='<blockchart_values_yaml>', status=<OktoStatus.OKTOSTATUS_PROGRESSING: 'OKTOSTATUS_PROGRESSING'>, created_at=datetime.datetime(<timestamp>), device_ids=['<device_id_1>', '<device_id_2>'])], status='OKTOSTATUS_PROGRESSING', org='<organization_id>', owner='<owner_id>', created_at=datetime.datetime(<timestamp>))
+INFO:root:test_get_deployed_service_by_id passed.
+INFO:root:Finished test_get_deployed_service_by_id
+--------------------------------------------------
+
+✅ Deployed service details fetched! Press Enter to update the service node ports...
+INFO:root:🔧 Testing update_service_node_ports
+INFO:root:🔧 Testing update_service_node_ports for service_id: <service_id>
+INFO:root:Called get_deployed_service
+INFO:root:Service found
+INFO:root:Service chain found
+INFO:root:Blocks found in service chain
+INFO:root:Block values found for block ID <block_id>
+INFO:root:Original blockchart_values for block ID <block_id>: <original_blockchart_values_dict>
+INFO:root:Deployments found in block values
+INFO:root:Nginx found in deployments
+INFO:root:Values found in nginx deployment
+INFO:root:Service found in nginx values
+INFO:root:Current nodePorts: <current_nodeports_dict>
+INFO:root:New nodePorts: <new_nodeports_dict>
+INFO:root:Updated blockchart_values YAML for block ID <block_id>: <updated_blockchart_values_yaml>
+INFO:root:Updated blockchart_values for block ID <block_id>
+INFO:root:UpdateServiceChainArgs created: id='<service_id>' name='<service_name>' blocks=[BlockArgsUpdate(id='<block_id>', display_name='<block_display_name>', block_chart_name='<chart_name>', block_chart_version='<version>', values="<updated_blockchart_values_yaml>")]
+INFO:root:Adjusted UpdateServiceChainArgs: id='<service_id>' name='<service_name>' blocks=[BlockArgsUpdate(id='<block_id>', display_name='<block_display_name>', block_chart_name='<chart_name>', block_chart_version='<version>', values="<updated_blockchart_values_yaml>")]
+INFO:root:Called update_service
+INFO:root:Update service response: service_chain=ServiceChainResponseServiceChain(id='<service_id>', revision=<new_revision_number>, name='<service_name>', blocks=[Block(id='<block_id>', display_name='<block_display_name>', owner='<owner_id>', org='<organization_id>', blockchart_name='<chart_name>', blockchart_version='<version>', blockchart_values='<updated_blockchart_values_yaml>', status=<OktoStatus.OKTOSTATUS_PROGRESSING: 'OKTOSTATUS_PROGRESSING'>, created_at=datetime.datetime(<new_timestamp>), device_ids=['<device_id_1>', '<device_id_2>'])], status='OKTOSTATUS_PROGRESSING', org='<organization_id>', owner='<owner_id>', created_at=datetime.datetime(<new_timestamp>))
+INFO:root:test_update_service_node_ports passed.
+INFO:root:Finished test_update_service_node_ports
+--------------------------------------------------
+
+✅ Service node ports updated! Press Enter to delete the service...
+INFO:root:🗑️ Deleting service by ID
+INFO:root:🗑️ Delete service response: "<service_id>"
