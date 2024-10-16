@@ -1,6 +1,8 @@
-# 🚀 NBI Client: Your Gateway to Service Orchestration
+![image](https://github.com/user-attachments/assets/a1726e23-59a0-430c-b6a0-f07a631db274)
 
-Welcome to the NBI Client, a powerful Python library that simplifies interaction with the NBI Service Orchestration API. This client provides a seamless interface for managing service chains across cloud and edge computing environments.
+# 🚀 NearbyOne innovation north-bound interface (NBI) Client: Your Gateway to Service Orchestration
+
+Welcome to the NearbyOne innovation NBI Client, a powerful Python library that simplifies interaction with the NearbyOne innovation NBI Service Orchestration API. This client provides a seamless interface for managing service chains across cloud and edge computing environments.
 
 ## 🌟 Features
 
@@ -140,5 +142,3 @@ This project is proprietary and confidential. Unauthorized copying, transferring
 For any questions or support needs, please contact our team at support@nearbycomputing.com.
 
 Happy orchestrating! 🎉
-# inno-nbi-service-orchestration-api-client
-# inno-nbi-service-orchestration-api-client
