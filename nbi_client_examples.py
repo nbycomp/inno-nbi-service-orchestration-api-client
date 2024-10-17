@@ -72,14 +72,16 @@ def test_list_marketplace_charts(client):
     try:
         charts_response = client.list_marketplace_charts()
         logging.info("Called list_marketplace_charts")
-        logging.info(f"Marketplace charts fetched: {charts_response.charts}")
         
-        if charts_response:
-            logging.info("test_list_marketplace_charts passed.")
-            return charts_response.charts
+        nginx_chart = next((chart for chart in charts_response.charts if chart.name == "NginxSimpleContainer"), None)
+        
+        if nginx_chart:
+            logging.info(f"NGINX chart found: {nginx_chart}")
         else:
-            logging.warning("test_list_marketplace_charts returned None.")
-            return None
+            logging.warning("NGINX chart not found in marketplace charts. Using the first available chart.")
+            nginx_chart = charts_response.charts[0] if charts_response.charts else None
+        
+        return nginx_chart
     except Exception as e:
         logging.error(f"test_list_marketplace_charts failed: {e}")
         return None
@@ -108,6 +110,7 @@ def test_fetch_block_chart(client, chart_name, chart_version):
 def test_deploy_service(client, site_id, chart_name, chart_version, display_name):
     logging.info("Starting test_deploy_service")
     try:
+        service_name = f"NBI API Test Script - {chart_name}"
         block_args = BlockArgsDeploy(
             site_id=site_id,
             display_name=display_name,
@@ -117,7 +120,7 @@ def test_deploy_service(client, site_id, chart_name, chart_version, display_name
         logging.debug(f"BlockArgs created: {block_args}")
         
         deploy_args = DeployServiceChainArgs(
-            name="test",
+            name=service_name,
             blocks=[block_args.model_dump()]  # Convert BlockArgs instance to a dictionary
         )
         logging.info(f"DeployServiceChainArgs created: {deploy_args}")
@@ -277,7 +280,28 @@ def test_update_service_node_ports(client, service_id, new_http_port, new_https_
     finally:
         logging.info("Finished test_update_service_node_ports\n" + "-"*50 + "\n")
 
-
+def select_service_to_delete(services):
+    print("\nAvailable services:")
+    for i, service in enumerate(services, 1):
+        print(f"{i}. {service.service_chain.name} (ID: {service.service_chain.id})")
+    
+    while True:
+        try:
+            choice = int(input("\nEnter the number of the service you want to delete (0 to cancel): "))
+            if choice == 0:
+                return None
+            if 1 <= choice <= len(services):
+                selected_service = services[choice - 1]
+                confirm = input(f"Are you sure you want to delete '{selected_service.service_chain.name}'? (y/n): ")
+                if confirm.lower() == 'y':
+                    return selected_service.service_chain.id
+                else:
+                    print("Deletion cancelled.")
+                    return None
+            else:
+                print("Invalid choice. Please try again.")
+        except ValueError:
+            print("Invalid input. Please enter a number.")
 
 # Example usage
 if __name__ == "__main__":
@@ -290,7 +314,6 @@ if __name__ == "__main__":
 
     if organizations:
         site_id = organizations[0].sites[0]
-        # Assuming each organization has a list of device_metas, and you want to get the first device ID
         device_meta = organizations[0].device_metas[0] if organizations[0].device_metas else None
         device_id = device_meta.id if device_meta else None
         
@@ -303,37 +326,30 @@ if __name__ == "__main__":
         input("✅ Device details fetched! Press Enter to continue to list marketplace charts...")
         
         logging.info("🛒 Testing list_marketplace_charts")
-        charts = test_list_marketplace_charts(nbi_client)
+        selected_chart = test_list_marketplace_charts(nbi_client)
         input("✅ Marketplace charts listed! Press Enter to continue to fetch block chart...")
         
-        if charts:
-            nginx_chart = next((chart for chart in charts if chart.name == "NginxSimpleContainer"), None)
+        if selected_chart:
+            logging.info("📦 Testing fetch_block_chart")
+            block_chart = test_fetch_block_chart(nbi_client, selected_chart.name, selected_chart.all_versions[0])
+            input("✅ Block chart fetched! Press Enter to continue to deploy service...")
             
-            if nginx_chart:
-                logging.info("📦 Testing fetch_block_chart")
-                block_chart = test_fetch_block_chart(nbi_client, nginx_chart.name, nginx_chart.all_versions[0])
-                input("✅ Block chart fetched! Press Enter to continue to deploy service...")
-                
-                if block_chart:
-                    logging.info("⚙️ Testing deploy_service")
-                    test_deploy_service(nbi_client, site_id, nginx_chart.name, nginx_chart.all_versions[0], nginx_chart.display_name)
-                    input("✅ Service deployed! Press Enter to get all deployed services...")
+            if block_chart:
+                logging.info("⚙️ Testing deploy_service")
+                test_deploy_service(nbi_client, site_id, selected_chart.name, selected_chart.all_versions[0], selected_chart.display_name)
+                input("✅ Service deployed! Press Enter to get all deployed services...")
 
     logging.info("🗂️ Testing get_all_deployed_services")
     services = test_get_all_deployed_services(nbi_client)
-    input("✅ All deployed services fetched! Press Enter to fetch details of the first deployed service...")
+    input("✅ All deployed services fetched! Press Enter to select a service to delete...")
     
     if services:
-        first_service_id = services[0].service_chain.id
-        logging.info(f"🔍 Testing get_deployed_service_by_id with service_id: {first_service_id}")
-        service_details = test_get_deployed_service_by_id(nbi_client, first_service_id)
-        input("✅ Deployed service details fetched! Press Enter to update the service node ports...")
-        
-        if service_details:
-            logging.info("🔧 Testing update_service_node_ports")
-            test_update_service_node_ports(nbi_client, first_service_id, "32074", "32075")
-            input("✅ Service node ports updated! Press Enter to delete the service...")
-            
-            logging.info("🗑️ Deleting service by ID")
-            response = nbi_client.delete_service_chain_by_id(first_service_id)
+        service_id_to_delete = select_service_to_delete(services)
+        if service_id_to_delete:
+            logging.info(f"🗑️ Deleting service by ID: {service_id_to_delete}")
+            response = nbi_client.delete_service_chain_by_id(service_id_to_delete)
             logging.info(f"🗑️ Delete service response: {response}")
+        else:
+            logging.info("Service deletion cancelled or no service selected.")
+    else:
+        logging.info("No services available to delete.")
