@@ -1,0 +1,957 @@
+openapi: 3.0.3
+info:
+  title: NBI Service Orchestration API
+  description: Provides a robust interface for orchestrating service chains across cloud and edge computing environments, facilitating deployment, management, and updates of service chains to ensure dynamic, efficient operations across diverse infrastructure setups.
+  termsOfService: 'https://www.nearbycomputing.com/terms'
+  contact:
+    name: API Support Team NBYOne
+    url: 'https://www.nearbycomputing.com/support'
+    email: support@nearbycomputing.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+  version: "1.0.0"
+servers:
+  - url: 'https://YOURENV.envs.nearbycomputing.com'
+    description: Access the API using the appropriate environment endpoint by replacing '{environment}' with your specific environment identifier (e.g., 'prod', 'dev', 'staging').
+
+tags:
+  - name: Organizations
+    description: Obtain organizations details.
+  - name: Infrastructure
+    description: Manage infrastructure interactions including listing of devices and their conceptual organization within sites.
+  - name: Marketplace
+    description: Manage marketplace interactions including listing of marketplace offerings.
+  - name: Services
+    description: Manage the lifecycle of services from deployment to decommissioning.
+
+externalDocs:
+  description: For additional details, visit our comprehensive documentation portal.
+  url: 'https://docs.nearbycomputing.com'
+
+
+paths:
+  /organizations:
+    get:
+      tags:
+        - Organizations
+      summary: Retrieve details for all organizations accessible to the user
+      operationId: getOrganizations
+      responses:
+        '200':
+          description: Successfully retrieved organizations.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Organization'
+        '400':
+          description: Bad request due to invalid format or parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden access, authorization failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '503':
+          description: Service unavailable or under maintenance.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        'default':
+          description: Default response for unexpected errors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+
+  /infrastructure/sites/{siteId}:
+    get:
+      tags:
+        - Infrastructure
+      summary: Retrieve details for a specific site within an organization
+      operationId: getSiteDetails
+      parameters:
+        - name: siteId
+          in: path
+          required: true
+          description: The unique identifier of the site to fetch.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved site details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SiteResponse'
+        '400':
+          description: Bad request due to invalid format or parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden access, authorization failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '503':
+          description: Service unavailable or under maintenance.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        'default':
+          description: Default response for unexpected errors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /infrastructure/devices/{deviceId}:
+    get:
+      tags:
+        - Infrastructure
+      summary: Retrieve details for a specific device within an organization
+      operationId: getDeviceDetails
+      parameters:
+        - name: deviceId
+          in: path
+          required: true
+          description: The unique identifier of the device to fetch details for.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved device details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceResponse'
+        '400':
+          description: Bad request due to invalid format or parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden access, authorization failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '503':
+          description: Service unavailable or under maintenance.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        'default':
+          description: Default response for unexpected errors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /marketplace/blockcharts:
+    get:
+      tags:
+        - Marketplace
+      summary: List all available block charts in the marketplace
+      operationId: listMarketplaceCharts
+      responses:
+        '200':
+          description: Successfully listed marketplace charts.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MarketplaceChartsResponse'
+        '400':
+          description: Bad request due to invalid format or parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden access, authorization failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '503':
+          description: Service unavailable or under maintenance.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        'default':
+          description: Default response for unexpected errors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /marketplace/blockcharts/{blockName}/{blockVersion}:
+    get:
+      tags:
+        - Marketplace
+      summary: Retrieve specific block chart details from the marketplace
+      operationId: fetchBlockChart
+      parameters:
+        - name: blockName
+          in: path
+          required: true
+          description: The unique name of the BlockChart to retrieve.
+          schema:
+            type: string
+        - name: blockVersion
+          in: path
+          required: true
+          description: The version of the BlockChart to retrieve.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved the BlockChart details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FetchBlockChartResponse'
+        '400':
+          description: Bad request due to invalid format or parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden access, authorization failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '503':
+          description: Service unavailable or under maintenance.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        'default':
+          description: Default response for unexpected errors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          
+
+  /services/{serviceId}:
+    parameters:
+      - name: serviceId
+        in: path
+        required: true
+        description: The unique identifier of the service to operate on.
+        schema:
+          type: string
+    get:
+      tags:
+        - Services
+      summary: Retrieve deployed service chain by ID
+      operationId: getDeployedService
+      responses:
+        '200':
+          description: Successfully retrieved service details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceChainResponse'
+        '400':
+          description: Bad request due to invalid format or parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden access, authorization failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '503':
+          description: Service unavailable or under maintenance.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        'default':
+          description: Default response for unexpected errors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    put:
+      tags:
+        - Services
+      summary: Update a deployed service chain
+      operationId: updateService
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateServiceChainArgs'
+      responses:
+        '200':
+          description: Service updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceChainResponse'
+        '400':
+          description: Bad request due to invalid format or parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden access, authorization failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '503':
+          description: Service unavailable or under maintenance.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        'default':
+          description: Default response for unexpected errors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      tags:
+        - Services
+      summary: Delete a deployed service chain by ID
+      operationId: deleteServiceChainByID
+      responses:
+        '200':
+          description: Service chain deleted successfully.
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "Service deleted successfully!"
+        '400':
+          description: Bad request due to invalid format or parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden access, authorization failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '503':
+          description: Service unavailable or under maintenance.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        'default':
+          description: Default response for unexpected errors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+
+  /services:
+    post:
+      tags:
+        - Services
+      summary: Deploy a new service chain
+      operationId: deployService
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeployServiceChainArgs'
+      responses:
+        '200':
+          description: Service deployed successfully.
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "Service deployed successfully."
+        '400':
+          description: Bad request due to invalid format or parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden access, authorization failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '503':
+          description: Service unavailable or under maintenance.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        'default':
+          description: Default response for unexpected errors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    get:
+      tags:
+        - Services
+      summary: Retrieve all deployed service chains
+      operationId: getAllDeployedServices
+      parameters:
+        - name: site_ids
+          in: query
+          description: "List of sites to filter the services."
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: Successfully retrieved list of all deployed services.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServiceChainResponse'
+        '400':
+          description: Bad request due to invalid format or parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden access, authorization failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '503':
+          description: Service unavailable or under maintenance.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        'default':
+          description: Default response for unexpected errors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+
+
+components:
+
+  schemas:
+    # /organizations
+    Organization:
+      type: object
+      properties:
+        id:
+          type: string
+        displayName:
+          type: string
+        description:
+          type: string
+        sites:
+          type: array
+          items:
+            type: string
+        device_metas:
+          type: array
+          items:
+            $ref: '#/components/schemas/DeviceMeta'
+    
+
+    DeviceMeta:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the device.
+        type:
+          type: string
+          description: The type of the device.
+          enum:
+            - UNKNOWN
+            - PASSIVE
+            - CLOUDLET
+            - CLOUDRESOURCE
+            - PROVISION
+      
+        # federation:
+        #   type: object
+        #   properties:
+        #     operatorName:
+        #       type: string
+        #     countryCode:
+        #       type: string
+        #     mcc:
+        #       type: string
+        #     mncs:
+        #       type: array
+        #       items:
+        #         type: string
+        #     federationUrl:
+        #       type: string
+
+
+    #/infrastructure/sites/{siteId}:
+    SiteResponse:
+      type: object
+      properties:
+        site:
+          $ref: '#/components/schemas/Site'
+    Site:
+      type: object
+      properties:
+        id:
+          type: string
+        displayName:
+          type: string
+        description:
+          type: string
+        ancestors:
+          type: array
+          items:
+            type: string
+        sites:
+          type: array
+          items:
+            type: string
+        devices:
+          type: array
+          items:
+            type: string
+        org:
+          type: string
+
+    # /infrastructure/devices/{deviceId}:
+    DeviceResponse:
+      type: object
+      properties:
+        device:
+          $ref: '#/components/schemas/Device'
+    Device:
+      type: object
+      properties:
+        id:
+          type: string
+        tags:
+          type: array
+          items:
+            type: object
+            properties:
+              key:
+                type: string
+              value:
+                type: string
+        displayName:
+          type: string
+        position:
+          type: object
+          properties:
+            lat:
+              type: number
+            lng:
+              type: number
+        specs:
+          type: string
+        status:
+          type: string
+        progress:
+          type: object
+          properties:
+            step:
+              type: integer
+            goal:
+              type: integer
+        site:
+          type: string
+        cloudResourceChart:
+          type: object
+          properties:
+            key:
+              $ref: '#/components/schemas/ChartKey'
+            latestConfig:
+              type: array
+              items:
+                type: object
+                properties:
+                  label:
+                    type: string
+                  value:
+                    type: string
+                  jsonType:
+                    type: string
+                  required:
+                    type: boolean
+                  redacted:
+                    type: boolean
+        org:
+          type: string
+    ChartKey:
+      type: object
+      properties:
+        name:
+          type: string
+        version:
+          type: string
+
+    # /marketplace/blockcharts:
+    MarketplaceChartsResponse:
+      type: object
+      properties:
+        charts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChartRepoIndexEntry'
+
+    ChartRepoIndexEntry:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        display_name:
+          type: string
+        description:
+          type: string
+        vendor:
+          type: string
+        categories:
+          type: array
+          items:
+            type: string
+        all_versions:
+          type: array
+          items:
+            type: string
+
+    FetchBlockChartResponse:
+      type: object
+      properties:
+        displayName:
+          type: string
+        description:
+          type: string
+        version:
+          type: string
+        chartYaml:
+          type: string
+          description: Contents of Chart.yaml which define the chart's metadata.
+        overridesYaml:
+          type: string
+          description: Contents of overrides.yaml which specify configuration overrides.
+
+    # /services:
+    ServiceChainResponse:
+      type: object
+      properties:
+        serviceChain:
+          type: object
+          properties:
+            id:
+              type: string
+            revision:
+              type: integer
+            name:
+              type: string
+            blocks:
+              type: array
+              items:
+                $ref: '#/components/schemas/Block'
+            status:
+              type: string
+            org:
+              type: string
+            owner:
+              type: string
+            createdAt:
+              type: string
+              format: date-time
+
+    Block:
+        type: object
+        properties:
+          id:
+            type: string
+          displayName:
+            type: string
+          owner:
+            type: string
+          org:
+            type: string
+          blockchartName:
+            type: string
+          blockchartVersion:
+            type: string
+          blockchartValues:
+            type: string
+          status:
+            $ref: '#/components/schemas/OktoStatus'
+          created_at:
+            type: string
+            format: date-time
+          #  deviceIDs as an array of simple strings have to write mapper function
+          deviceIDs:
+            type: array
+            items:
+              type: string
+
+    OktoStatus:
+      type: string
+      enum:
+        - OKTOSTATUS_IN_SYNC
+        - OKTOSTATUS_PROGRESSING
+        - OKTOSTATUS_DELETING
+        - OKTOSTATUS_ERROR
+        - OKTOSTATUS_UNKNOWN
+        - OKTOSTATUS_PENDING
+
+    OktoResource:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        kind:
+          type: string
+        status:
+          $ref: '#/components/schemas/OktoStatus'
+        namespace:
+          type: string
+        manifest:
+          type: string
+
+
+    UpdateServiceChainArgs:
+      type: object
+      description: Arguments to update a service chain including identification and block configuration details.
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the service chain to be updated.
+        name:
+          type: string
+          description: The name of the service chain.
+        blocks:
+          type: array
+          description: A list of blocks to be updated or added to the service chain.
+          items:
+            $ref: '#/components/schemas/BlockArgsUpdate'
+          
+    BlockArgsUpdate:
+      type: object
+      description: Defines either a new block to be added or an existing block to be updated within a service chain.
+      properties:
+        id:
+          type: string
+          description: ID of a previously-deployed block to update. Providing this parameter implies an update to an existing block; inputs with no ID will be treated as new blocks.
+        displayName:
+          type: string
+          description: The display name of the block.
+        blockChartName:
+          type: string
+          description: The name of the block chart associated with this block.
+        blockChartVersion:
+          type: string
+          description: The version of the block chart to be used.
+        values:
+          type: string
+          description: A string of values necessary for configuring the block, typically in JSON or YAML format.
+          
+    DeployServiceChainArgs:
+      type: object
+      properties:
+        name:
+          type: string
+        blocks:
+          type: array
+          items:
+            $ref: '#/components/schemas/BlockArgsDeploy'
+      
+    BlockArgsDeploy:
+      type: object
+      description: Defines either a new block to be added or an existing block to be updated within a service chain.
+      properties:
+        displayName:
+          type: string
+          description: The display name of the block.
+        blockChartName:
+          type: string
+          description: The name of the block chart associated with this block.
+        blockChartVersion:
+          type: string
+          description: The version of the block chart to be used.
+        site_id:
+          type: string
+          description: The ID of the site associated with this block.
+
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: string
