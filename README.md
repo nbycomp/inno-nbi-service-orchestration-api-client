@@ -23,11 +23,7 @@ The NearbyOne Innovation NBI (North-Bound Interface) Client is a robust Python l
 
 ### Steps
 
-1. Clone the repository:
-   ```
-   git clone https://github.com/your-repo/nbi-client.git
-   cd nbi-client
-   ```
+1. Clone the repository
 
 2. Install required packages:
    ```
