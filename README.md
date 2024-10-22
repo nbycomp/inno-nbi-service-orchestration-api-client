@@ -64,7 +64,7 @@ The NearbyOne Innovation NBI (North-Bound Interface) Client is a robust Python l
    - Click on the left pane on 'Infrastruture'
    - Click on the left side again on your 'Organization'
 
-![image (1)](https://github.com/user-attachments/assets/2ac999a7-5783-4bb6-ad96-b3d9351d9a0c)
+   ![image (1)](https://github.com/user-attachments/assets/2ac999a7-5783-4bb6-ad96-b3d9351d9a0c)
 
 
 ## Quick Start Guide
