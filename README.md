@@ -23,22 +23,26 @@ The NearbyOne Innovation NBI (North-Bound Interface) Client is a robust Python l
 
 ### Steps
 
-1. Clone the repository
+1. Clone the repository:
+   ```
+   git clone https://github.com/your-repo/nearbyone-innovation-nbi-client.git
+   cd nearbyone-innovation-nbi-client
+   ```
 
-2. Install required packages:
+2. Create and activate a virtual environment:
+   ```
+   python3 -m venv venv-nbi-client
+   source venv-nbi-client/bin/activate  # On Windows use `venv-nbi-client\Scripts\activate`
+   ```
+
+3. Install required packages:
    ```
    pip install -r requirements.txt
    ```
 
 ## Environment Setup
 
-1. Create and activate a virtual environment:
-   ```
-   python3 -m venv venv-nbi-client
-   source venv-nbi-client/bin/activate  # On Windows use `venv-nbi-client\Scripts\activate`
-   ```
-
-2. Configure environment variables:
+1. Configure environment variables:
    Create a `.env` file in the project root and add the following:
    ```
    NBY_ENV_EMAIL=your-email@example.com
