@@ -1,4 +1,4 @@
-![NearbyOne Logo](https://github.com/user-attachments/assets/a1726e23-59a0-430c-b6a0-f07a631db274)
+![image (1)](https://github.com/user-attachments/assets/73ab71af-b0fa-49dd-a9e1-15f0023cc241)![NearbyOne Logo](https://github.com/user-attachments/assets/a1726e23-59a0-430c-b6a0-f07a631db274)
 
 # NearbyOne Innovation NBI Client
 
@@ -53,15 +53,24 @@ The NearbyOne Innovation NBI (North-Bound Interface) Client is a robust Python l
 
    Replace placeholders with your actual credentials and information.
 
-   Note: For `NBY_ENV_NAME`, use everything before `.nearbycomputing.com` in your environment URL.
+   For `NBY_ENV_NAME`, use everything before `.nearbycomputing.com` in your environment URL.
 
    Examples:
    - For https://nearbyone.innovationlab.nearbycomputing.com/, use `NBY_ENV_NAME=nearbyone.innovationlab`
    - For https://berendgort.envs.nearbycomputing.com/, use `NBY_ENV_NAME=berendgort.envs`
+  
+   For `NBY_ORGANIZATION_ID`, follow the following steps (screenshot below):
+   - Go to the right organization (top-right bar of the page)
+   - Click on the left pane on 'Infrastruture'
+   - Click on the left side again on your 'Organization'
+
+![image (1)](https://github.com/user-attachments/assets/2ac999a7-5783-4bb6-ad96-b3d9351d9a0c)
+
 
 ## Quick Start Guide
 
 For a comprehensive example of how to use the NearbyOne Innovation NBI Client, refer to the `nbi_client_examples.py` file in the project root. This script demonstrates various API calls and can be run directly without any specific parameters.
+![image (1)](https://github.com/user-attachments/assets/d4791bc7-de62-4bd5-940a-b2587ab2a214)
 
 1. Run the example script:
    ```
