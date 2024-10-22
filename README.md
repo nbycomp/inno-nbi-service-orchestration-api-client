@@ -59,7 +59,7 @@ The NearbyOne Innovation NBI (North-Bound Interface) Client is a robust Python l
    - For https://nearbyone.innovationlab.nearbycomputing.com/, use `NBY_ENV_NAME=nearbyone.innovationlab`
    - For https://berendgort.envs.nearbycomputing.com/, use `NBY_ENV_NAME=berendgort.envs`
   
-   For `NBY_ORGANIZATION_ID`, follow the following steps (screenshot below):
+   For `NBY_ORGANIZATION_ID`, follow these steps (screenshot below):
    - Go to the right organization (top-right bar of the page)
    - Click on the left pane on 'Infrastrucure'
    - Click on the left side again on your 'Organization'
