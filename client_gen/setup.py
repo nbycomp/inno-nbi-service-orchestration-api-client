@@ -35,7 +35,7 @@ setup(
     name=NAME,
     version=VERSION,
     description="NBI Service Orchestration API",
-    author="API Support Team NBY",
+    author="API Support Team NBYOne",
     author_email="support@nearbycomputing.com",
     url="",
     keywords=["OpenAPI", "OpenAPI-Generator", "NBI Service Orchestration API"],
