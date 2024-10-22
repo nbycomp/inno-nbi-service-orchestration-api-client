@@ -76,13 +76,6 @@ For a sample output of what to expect when running the script, refer to `nbi_cli
 
 For more detailed usage, you can refer to the following sections of the `nbi_client_examples.py` file:
 
-## Advanced Usage
-
-For more complex operations and examples, refer to the `examples/` directory in the project repository. These examples cover:
-
-- Service chain deployment and management
-- Infrastructure queries and modifications
-- Marketplace interactions
 
 ## API Reference
 
