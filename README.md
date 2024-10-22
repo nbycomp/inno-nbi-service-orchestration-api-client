@@ -1,4 +1,4 @@
-![image (1)](https://github.com/user-attachments/assets/73ab71af-b0fa-49dd-a9e1-15f0023cc241)![NearbyOne Logo](https://github.com/user-attachments/assets/a1726e23-59a0-430c-b6a0-f07a631db274)
+![NearbyOne Logo](https://github.com/user-attachments/assets/a1726e23-59a0-430c-b6a0-f07a631db274)
 
 # NearbyOne Innovation NBI Client
 
@@ -70,7 +70,6 @@ The NearbyOne Innovation NBI (North-Bound Interface) Client is a robust Python l
 ## Quick Start Guide
 
 For a comprehensive example of how to use the NearbyOne Innovation NBI Client, refer to the `nbi_client_examples.py` file in the project root. This script demonstrates various API calls and can be run directly without any specific parameters.
-![image (1)](https://github.com/user-attachments/assets/d4791bc7-de62-4bd5-940a-b2587ab2a214)
 
 1. Run the example script:
    ```
