@@ -185,67 +185,31 @@ def test_update_service_node_ports(client, service_id, new_http_port, new_https_
         service = client.get_deployed_service(service_id)
         logging.info("Called get_deployed_service")
         
-        if service:
-            logging.info("Service found")
-        else:
-            logging.info("Service not found")
-
-        if service and service.service_chain:
-            logging.info("Service chain found")
-        else:
-            logging.info("Service chain not found")
-
         if service and service.service_chain and service.service_chain.blocks:
-            logging.info("Blocks found in service chain")
             updated_blocks = []
             for block in service.service_chain.blocks:
                 block_values = block.blockchart_values
                 if block_values:
-                    logging.info(f"Block values found for block ID {block.id}")
                     values_dict = yaml.safe_load(block_values)
                     logging.info(f"Original blockchart_values for block ID {block.id}: {values_dict}")
 
-                    if 'deployments' in values_dict:
-                        logging.info("Deployments found in block values")
-                        if 'nginx' in values_dict['deployments']:
-                            logging.info("Nginx found in deployments")
-                            if 'values' in values_dict['deployments']['nginx']:
-                                logging.info("Values found in nginx deployment")
-                                if 'service' in values_dict['deployments']['nginx']['values']:
-                                    logging.info("Service found in nginx values")
-                                    if 'nodePorts' not in values_dict['deployments']['nginx']['values']['service']:
-                                        logging.info("NodePorts not found in nginx service values, initializing nodePorts")
-                                        values_dict['deployments']['nginx']['values']['service']['nodePorts'] = {}
-                                    
-                                    # Log the current nodePorts before changing them
-                                    current_node_ports = values_dict['deployments']['nginx']['values']['service']['nodePorts']
-                                    logging.info(f"Current nodePorts: {current_node_ports}")
-                                    
-                                    # Update the nodePorts
-                                    values_dict['deployments']['nginx']['values']['service']['nodePorts']['http'] = new_http_port
-                                    values_dict['deployments']['nginx']['values']['service']['nodePorts']['https'] = new_https_port
+                    if 'deployments' in values_dict and 'nginx' in values_dict['deployments']:
+                        nginx_values = values_dict['deployments']['nginx'].get('values', {})
+                        service_values = nginx_values.get('service', {})
 
-                                    # Log the new nodePorts to ensure they were changed
-                                    new_node_ports = values_dict['deployments']['nginx']['values']['service']['nodePorts']
-                                    logging.info(f"New nodePorts: {new_node_ports}")
+                        if new_https_port:
+                            service_values['httpsPort'] = new_https_port
+                        if new_http_port:
+                            service_values['httpPort'] = new_http_port
 
-                                    # Convert the updated dictionary back to YAML
-                                    updated_blockchart_values = yaml.dump(values_dict, default_flow_style=False)
-                                    logging.info(f"Updated blockchart_values YAML for block ID {block.id}: {updated_blockchart_values}")
+                        nginx_values['service'] = service_values
+                        values_dict['deployments']['nginx']['values'] = nginx_values
 
-                                    block.blockchart_values = updated_blockchart_values
-                                    logging.info(f"Updated blockchart_values for block ID {block.id}")
-                                else:
-                                    logging.info("Service not found in nginx values")
-                            else:
-                                logging.info("Values not found in nginx deployment")
-                        else:
-                            logging.info("Nginx not found in deployments")
-                    else:
-                        logging.info("Deployments not found in block values")
-                else:
-                    logging.info(f"Block values not found for block ID {block.id}")
-                
+                    updated_blockchart_values = yaml.dump(values_dict, default_flow_style=False)
+                    logging.info(f"Updated blockchart_values YAML for block ID {block.id}: {updated_blockchart_values}")
+
+                    block.blockchart_values = updated_blockchart_values
+
                 updated_block = BlockArgsUpdate(
                     id=block.id,
                     display_name=block.display_name,
@@ -262,9 +226,6 @@ def test_update_service_node_ports(client, service_id, new_http_port, new_https_
             )
             logging.info(f"UpdateServiceChainArgs created: {update_args}")
 
-            # Print the adjusted values before sending them off
-            logging.info(f"Adjusted UpdateServiceChainArgs: {update_args}")
-
             response = client.update_service(service_id, update_args.model_dump())
             logging.info("Called update_service")
             logging.info(f"Update service response: {response}")
@@ -274,7 +235,7 @@ def test_update_service_node_ports(client, service_id, new_http_port, new_https_
             else:
                 logging.warning("test_update_service_node_ports returned None.")
         else:
-            logging.info("Blocks not found in service chain")
+            logging.info("Service or blocks not found")
     except Exception as e:
         logging.error(f"test_update_service_node_ports failed: {e}")
     finally:
@@ -338,6 +299,47 @@ if __name__ == "__main__":
                 logging.info("⚙️ Testing deploy_service")
                 test_deploy_service(nbi_client, site_id, selected_chart.name, selected_chart.all_versions[0], selected_chart.display_name)
                 input("✅ Service deployed! Press Enter to get all deployed services...")
+
+    logging.info("🗂️ Testing get_all_deployed_services")
+    services = test_get_all_deployed_services(nbi_client)
+    input("✅ All deployed services fetched! Press Enter to select a service to update...")
+    
+    if services:
+        print("\nAvailable services:")
+        for i, service in enumerate(services, 1):
+            print(f"{i}. {service.service_chain.name} (ID: {service.service_chain.id})")
+        
+        while True:
+            try:
+                choice = int(input("\nEnter the number of the service you want to update (0 to skip): "))
+                if choice == 0:
+                    break
+                if 1 <= choice <= len(services):
+                    selected_service = services[choice - 1]
+                    service_id = selected_service.service_chain.id
+                    
+                    logging.info(f"📡 Testing get_deployed_service_by_id for service ID: {service_id}")
+                    service_details = test_get_deployed_service_by_id(nbi_client, service_id)
+                    
+                    if service_details:
+                        new_http_port = int(input("Enter new HTTP port (or press Enter to keep current): ") or 0)
+                        new_https_port = int(input("Enter new HTTPS port (or press Enter to keep current): ") or 0)
+                        
+                        if new_http_port or new_https_port:
+                            logging.info("🔧 Testing update_service_node_ports")
+                            test_update_service_node_ports(nbi_client, service_id, new_http_port, new_https_port)
+                            input("✅ Service updated! Press Enter to continue...")
+                        else:
+                            print("No changes made to node ports.")
+                    else:
+                        print("Failed to fetch service details.")
+                    break
+                else:
+                    print("Invalid choice. Please try again.")
+            except ValueError:
+                print("Invalid input. Please enter a number.")
+    else:
+        logging.info("No services available to update.")
 
     logging.info("🗂️ Testing get_all_deployed_services")
     services = test_get_all_deployed_services(nbi_client)
