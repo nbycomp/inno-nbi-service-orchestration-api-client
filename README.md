@@ -61,8 +61,9 @@ The NearbyOne Innovation NBI (North-Bound Interface) Client is a robust Python l
   
    For `NBY_ORGANIZATION_ID`, follow the following steps (screenshot below):
    - Go to the right organization (top-right bar of the page)
-   - Click on the left pane on 'Infrastruture'
+   - Click on the left pane on 'Infrastrucure'
    - Click on the left side again on your 'Organization'
+   - Copy the ID string from the Organization Page Overview
 
    ![image (1)](https://github.com/user-attachments/assets/2ac999a7-5783-4bb6-ad96-b3d9351d9a0c)
 
