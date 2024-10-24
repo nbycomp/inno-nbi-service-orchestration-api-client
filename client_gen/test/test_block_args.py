@@ -1,5 +1,6 @@
 import unittest
-from inno_nbi_api.models.block_args import BlockArgs
+from inno_nbi_api.models.block_args_deploy import BlockArgsDeploy
+from inno_nbi_api.models.block_args_update import BlockArgsUpdate
 
 class TestBlockArgs(unittest.TestCase):
     """BlockArgs unit test stubs"""
@@ -10,14 +11,23 @@ class TestBlockArgs(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> BlockArgs:
-        """Test BlockArgs
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        model = BlockArgs()
+    def make_instance_deploy(self, include_optional) -> BlockArgsDeploy:
+        """Test BlockArgsDeploy"""
         if include_optional:
-            return BlockArgs(
+            return BlockArgsDeploy(
+                site_id='34523423452345',
+                display_name='Test Service 1',
+                block_chart_name='Test Service 1',
+                block_chart_version='0.0.1',
+                values=''
+            )
+        else:
+            return BlockArgsDeploy()
+
+    def make_instance_update(self, include_optional) -> BlockArgsUpdate:
+        """Test BlockArgsUpdate"""
+        if include_optional:
+            return BlockArgsUpdate(
                 id='34523423452345',
                 display_name='Test Service 1',
                 block_chart_name='Test Service 1',
@@ -25,15 +35,28 @@ class TestBlockArgs(unittest.TestCase):
                 values=''
             )
         else:
-            return BlockArgs()
+            return BlockArgsUpdate()
 
-    def testBlockArgs(self):
-        """Test BlockArgs"""
-        inst_req_only = self.make_instance(include_optional=False)
-        self.assertIsInstance(inst_req_only, BlockArgs)
+    def testBlockArgsDeploy(self):
+        """Test BlockArgsDeploy"""
+        inst_req_only = self.make_instance_deploy(include_optional=False)
+        self.assertIsInstance(inst_req_only, BlockArgsDeploy)
 
-        inst_req_and_optional = self.make_instance(include_optional=True)
-        self.assertIsInstance(inst_req_and_optional, BlockArgs)
+        inst_req_and_optional = self.make_instance_deploy(include_optional=True)
+        self.assertIsInstance(inst_req_and_optional, BlockArgsDeploy)
+        self.assertEqual(inst_req_and_optional.site_id, '34523423452345')
+        self.assertEqual(inst_req_and_optional.display_name, 'Test Service 1')
+        self.assertEqual(inst_req_and_optional.block_chart_name, 'Test Service 1')
+        self.assertEqual(inst_req_and_optional.block_chart_version, '0.0.1')
+        self.assertEqual(inst_req_and_optional.values, '')
+
+    def testBlockArgsUpdate(self):
+        """Test BlockArgsUpdate"""
+        inst_req_only = self.make_instance_update(include_optional=False)
+        self.assertIsInstance(inst_req_only, BlockArgsUpdate)
+
+        inst_req_and_optional = self.make_instance_update(include_optional=True)
+        self.assertIsInstance(inst_req_and_optional, BlockArgsUpdate)
         self.assertEqual(inst_req_and_optional.id, '34523423452345')
         self.assertEqual(inst_req_and_optional.display_name, 'Test Service 1')
         self.assertEqual(inst_req_and_optional.block_chart_name, 'Test Service 1')
