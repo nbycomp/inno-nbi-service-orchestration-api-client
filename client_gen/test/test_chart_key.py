@@ -12,9 +12,7 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 import unittest
-
 from inno_nbi_api.models.chart_key import ChartKey
 
 class TestChartKey(unittest.TestCase):
@@ -31,23 +29,25 @@ class TestChartKey(unittest.TestCase):
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `ChartKey`
-        """
-        model = ChartKey()
         if include_optional:
             return ChartKey(
-                name = '',
-                version = ''
+                name='test_name',
+                version='1.0'
             )
         else:
             return ChartKey(
-        )
-        """
+                name='test_name'
+            )
 
     def testChartKey(self):
         """Test ChartKey"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+        inst_req_only = self.make_instance(include_optional=False)
+        self.assertEqual(inst_req_only.name, 'test_name')
+        self.assertIsNone(inst_req_only.version)
+
+        inst_req_and_optional = self.make_instance(include_optional=True)
+        self.assertEqual(inst_req_and_optional.name, 'test_name')
+        self.assertEqual(inst_req_and_optional.version, '1.0')
 
 if __name__ == '__main__':
     unittest.main()

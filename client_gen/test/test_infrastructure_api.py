@@ -12,11 +12,11 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 import unittest
-
+from unittest.mock import patch, MagicMock
 from inno_nbi_api.api.infrastructure_api import InfrastructureApi
-
+from inno_nbi_api.models.device import Device
+from inno_nbi_api.models.site import Site
 
 class TestInfrastructureApi(unittest.TestCase):
     """InfrastructureApi unit test stubs"""
@@ -27,20 +27,43 @@ class TestInfrastructureApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_get_device_details(self) -> None:
+    @patch('inno_nbi_api.api.infrastructure_api.InfrastructureApi.get_device_details')
+    def test_get_device_details(self, mock_get_device_details) -> None:
         """Test case for get_device_details
 
         Retrieve details for a specific device within an organization
         """
-        pass
+        # Create a mock response
+        mock_device = Device(id='device1', display_name='Test Device')
+        mock_get_device_details.return_value = mock_device
 
-    def test_get_site_details(self) -> None:
+        # Call the API method
+        device_id = 'device1'
+        response = self.api.get_device_details(device_id)
+
+        # Assertions
+        mock_get_device_details.assert_called_once_with(device_id)
+        self.assertEqual(response.id, 'device1')
+        self.assertEqual(response.display_name, 'Test Device')
+
+    @patch('inno_nbi_api.api.infrastructure_api.InfrastructureApi.get_site_details')
+    def test_get_site_details(self, mock_get_site_details) -> None:
         """Test case for get_site_details
 
         Retrieve details for a specific site within an organization
         """
-        pass
+        # Create a mock response
+        mock_site = Site(id='site1', display_name='Test Site')
+        mock_get_site_details.return_value = mock_site
 
+        # Call the API method
+        site_id = 'site1'
+        response = self.api.get_site_details(site_id)
+
+        # Assertions
+        mock_get_site_details.assert_called_once_with(site_id)
+        self.assertEqual(response.id, 'site1')
+        self.assertEqual(response.display_name, 'Test Site')
 
 if __name__ == '__main__':
     unittest.main()

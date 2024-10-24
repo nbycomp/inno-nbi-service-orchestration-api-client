@@ -12,7 +12,9 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+
 import unittest
+
 from inno_nbi_api.models.fetch_block_chart_response import FetchBlockChartResponse
 
 class TestFetchBlockChartResponse(unittest.TestCase):
@@ -29,32 +31,26 @@ class TestFetchBlockChartResponse(unittest.TestCase):
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
+        # uncomment below to create an instance of `FetchBlockChartResponse`
+        """
+        model = FetchBlockChartResponse()
         if include_optional:
             return FetchBlockChartResponse(
-                display_name='Test Display Name',
-                description='Test Description',
-                version='1.0',
-                chart_yaml='test_chart_yaml',
-                overrides_yaml='test_overrides_yaml'
+                display_name = '',
+                description = '',
+                version = '',
+                chart_yaml = '',
+                overrides_yaml = ''
             )
         else:
-            return FetchBlockChartResponse()
+            return FetchBlockChartResponse(
+        )
+        """
 
     def testFetchBlockChartResponse(self):
         """Test FetchBlockChartResponse"""
-        inst_req_only = self.make_instance(include_optional=False)
-        self.assertIsNone(inst_req_only.display_name)
-        self.assertIsNone(inst_req_only.description)
-        self.assertIsNone(inst_req_only.version)
-        self.assertIsNone(inst_req_only.chart_yaml)
-        self.assertIsNone(inst_req_only.overrides_yaml)
-
-        inst_req_and_optional = self.make_instance(include_optional=True)
-        self.assertEqual(inst_req_and_optional.display_name, 'Test Display Name')
-        self.assertEqual(inst_req_and_optional.description, 'Test Description')
-        self.assertEqual(inst_req_and_optional.version, '1.0')
-        self.assertEqual(inst_req_and_optional.chart_yaml, 'test_chart_yaml')
-        self.assertEqual(inst_req_and_optional.overrides_yaml, 'test_overrides_yaml')
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

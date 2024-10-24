@@ -12,7 +12,9 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+
 import unittest
+
 from inno_nbi_api.models.device_cloud_resource_chart_latest_config_inner import DeviceCloudResourceChartLatestConfigInner
 
 class TestDeviceCloudResourceChartLatestConfigInner(unittest.TestCase):
@@ -29,35 +31,26 @@ class TestDeviceCloudResourceChartLatestConfigInner(unittest.TestCase):
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
+        # uncomment below to create an instance of `DeviceCloudResourceChartLatestConfigInner`
+        """
+        model = DeviceCloudResourceChartLatestConfigInner()
         if include_optional:
             return DeviceCloudResourceChartLatestConfigInner(
-                label='test_label',
-                value='test_value',
-                json_type='string',
-                required=True,
-                redacted=True
+                label = '',
+                value = '',
+                json_type = '',
+                required = True,
+                redacted = True
             )
         else:
             return DeviceCloudResourceChartLatestConfigInner(
-                label='test_label',
-                value='test_value'
-            )
+        )
+        """
 
     def testDeviceCloudResourceChartLatestConfigInner(self):
         """Test DeviceCloudResourceChartLatestConfigInner"""
-        inst_req_only = self.make_instance(include_optional=False)
-        self.assertEqual(inst_req_only.label, 'test_label')
-        self.assertEqual(inst_req_only.value, 'test_value')
-        self.assertIsNone(inst_req_only.json_type)
-        self.assertIsNone(inst_req_only.required)
-        self.assertIsNone(inst_req_only.redacted)
-
-        inst_req_and_optional = self.make_instance(include_optional=True)
-        self.assertEqual(inst_req_and_optional.label, 'test_label')
-        self.assertEqual(inst_req_and_optional.value, 'test_value')
-        self.assertEqual(inst_req_and_optional.json_type, 'string')
-        self.assertTrue(inst_req_and_optional.required)
-        self.assertTrue(inst_req_and_optional.redacted)
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

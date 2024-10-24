@@ -12,9 +12,7 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 import unittest
-
 from inno_nbi_api.models.device_progress import DeviceProgress
 
 class TestDeviceProgress(unittest.TestCase):
@@ -31,23 +29,23 @@ class TestDeviceProgress(unittest.TestCase):
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `DeviceProgress`
-        """
-        model = DeviceProgress()
         if include_optional:
             return DeviceProgress(
-                step = 56,
-                goal = 56
+                step=56,
+                goal=56
             )
         else:
-            return DeviceProgress(
-        )
-        """
+            return DeviceProgress()
 
     def testDeviceProgress(self):
         """Test DeviceProgress"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+        inst_req_only = self.make_instance(include_optional=False)
+        self.assertIsNone(inst_req_only.step)
+        self.assertIsNone(inst_req_only.goal)
+
+        inst_req_and_optional = self.make_instance(include_optional=True)
+        self.assertEqual(inst_req_and_optional.step, 56)
+        self.assertEqual(inst_req_and_optional.goal, 56)
 
 if __name__ == '__main__':
     unittest.main()

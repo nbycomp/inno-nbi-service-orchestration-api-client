@@ -12,9 +12,7 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 import unittest
-
 from inno_nbi_api.models.site import Site
 
 class TestSite(unittest.TestCase):
@@ -31,34 +29,46 @@ class TestSite(unittest.TestCase):
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `Site`
-        """
-        model = Site()
         if include_optional:
             return Site(
-                id = '',
-                display_name = '',
-                description = '',
-                ancestors = [
-                    ''
-                    ],
-                sites = [
-                    ''
-                    ],
-                devices = [
-                    ''
-                    ],
-                org = ''
+                id='site1',
+                display_name='Test Site',
+                description='A test site',
+                ancestors=['ancestor1'],
+                sites=['site2'],
+                devices=['device1'],
+                org='org1'
             )
         else:
             return Site(
-        )
-        """
+                id='site1',
+                display_name='Test Site',
+                org='org1'
+            )
 
-    def testSite(self):
-        """Test Site"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+    def testSite_required_only(self):
+        """Test Site with only required params"""
+        inst_req_only = self.make_instance(include_optional=False)
+        self.assertIsInstance(inst_req_only, Site)
+        self.assertEqual(inst_req_only.id, 'site1')
+        self.assertEqual(inst_req_only.display_name, 'Test Site')
+        self.assertEqual(inst_req_only.org, 'org1')
+        self.assertIsNone(inst_req_only.description)
+        self.assertIsNone(inst_req_only.ancestors)
+        self.assertIsNone(inst_req_only.sites)
+        self.assertIsNone(inst_req_only.devices)
+
+    def testSite_required_and_optional(self):
+        """Test Site with required and optional params"""
+        inst_req_and_optional = self.make_instance(include_optional=True)
+        self.assertIsInstance(inst_req_and_optional, Site)
+        self.assertEqual(inst_req_and_optional.id, 'site1')
+        self.assertEqual(inst_req_and_optional.display_name, 'Test Site')
+        self.assertEqual(inst_req_and_optional.description, 'A test site')
+        self.assertEqual(inst_req_and_optional.ancestors, ['ancestor1'])
+        self.assertEqual(inst_req_and_optional.sites, ['site2'])
+        self.assertEqual(inst_req_and_optional.devices, ['device1'])
+        self.assertEqual(inst_req_and_optional.org, 'org1')
 
 if __name__ == '__main__':
     unittest.main()

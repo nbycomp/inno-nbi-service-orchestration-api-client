@@ -12,9 +12,8 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 import unittest
-
+from datetime import datetime
 from inno_nbi_api.models.block import Block
 
 class TestBlock(unittest.TestCase):
@@ -31,33 +30,49 @@ class TestBlock(unittest.TestCase):
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `Block`
-        """
-        model = Block()
         if include_optional:
             return Block(
-                id = '',
-                display_name = '',
-                owner = '',
-                org = '',
-                blockchart_name = '',
-                blockchart_version = '',
-                blockchart_values = '',
-                status = 'OKTOSTATUS_IN_SYNC',
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                device_ids = [
-                    ''
-                    ]
+                id='1',
+                display_name='Test Block',
+                owner='owner_id',
+                org='org_id',
+                blockchart_name='test_chart',
+                blockchart_version='1.0',
+                blockchart_values='values',
+                status='OKTOSTATUS_IN_SYNC',
+                created_at=datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                device_ids=['device1', 'device2']
             )
         else:
             return Block(
-        )
-        """
+                id='1'
+            )
 
     def testBlock(self):
         """Test Block"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+        inst_req_only = self.make_instance(include_optional=False)
+        self.assertEqual(inst_req_only.id, '1')
+        self.assertIsNone(inst_req_only.display_name)
+        self.assertIsNone(inst_req_only.owner)
+        self.assertIsNone(inst_req_only.org)
+        self.assertIsNone(inst_req_only.blockchart_name)
+        self.assertIsNone(inst_req_only.blockchart_version)
+        self.assertIsNone(inst_req_only.blockchart_values)
+        self.assertIsNone(inst_req_only.status)
+        self.assertIsNone(inst_req_only.created_at)
+        self.assertIsNone(inst_req_only.device_ids)
+
+        inst_req_and_optional = self.make_instance(include_optional=True)
+        self.assertEqual(inst_req_and_optional.id, '1')
+        self.assertEqual(inst_req_and_optional.display_name, 'Test Block')
+        self.assertEqual(inst_req_and_optional.owner, 'owner_id')
+        self.assertEqual(inst_req_and_optional.org, 'org_id')
+        self.assertEqual(inst_req_and_optional.blockchart_name, 'test_chart')
+        self.assertEqual(inst_req_and_optional.blockchart_version, '1.0')
+        self.assertEqual(inst_req_and_optional.blockchart_values, 'values')
+        self.assertEqual(inst_req_and_optional.status, 'OKTOSTATUS_IN_SYNC')
+        self.assertEqual(inst_req_and_optional.created_at, datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'))
+        self.assertEqual(inst_req_and_optional.device_ids, ['device1', 'device2'])
 
 if __name__ == '__main__':
     unittest.main()

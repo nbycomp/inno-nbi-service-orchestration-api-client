@@ -12,10 +12,11 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 import unittest
-
+from unittest.mock import patch, MagicMock
 from inno_nbi_api.api.organizations_api import OrganizationsApi
+from inno_nbi_api.models.organization import Organization
+from inno_nbi_api.models.device_meta import DeviceMeta
 
 
 class TestOrganizationsApi(unittest.TestCase):
@@ -27,13 +28,40 @@ class TestOrganizationsApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_get_organizations(self) -> None:
+    @patch('inno_nbi_api.api.organizations_api.OrganizationsApi.get_organizations')
+    def test_get_organizations(self, mock_get_organizations) -> None:
         """Test case for get_organizations
 
         Retrieve details for all organizations accessible to the user
         """
-        pass
+        # Create a mock response
+        mock_response = [
+            Organization(
+                id='org1',
+                display_name='Test Organization',
+                description='A test organization',
+                sites=['site1', 'site2'],
+                device_metas=[
+                    DeviceMeta(id='device1'),
+                    DeviceMeta(id='device2')
+                ]
+            )
+        ]
+        mock_get_organizations.return_value = mock_response
 
+        # Call the API method
+        response = self.api.get_organizations()
+
+        # Assertions
+        mock_get_organizations.assert_called_once()
+        self.assertEqual(len(response), 1)
+        self.assertEqual(response[0].id, 'org1')
+        self.assertEqual(response[0].display_name, 'Test Organization')
+        self.assertEqual(response[0].description, 'A test organization')
+        self.assertEqual(response[0].sites, ['site1', 'site2'])
+        self.assertEqual(len(response[0].device_metas), 2)
+        self.assertEqual(response[0].device_metas[0].id, 'device1')
+        self.assertEqual(response[0].device_metas[1].id, 'device2')
 
 if __name__ == '__main__':
     unittest.main()

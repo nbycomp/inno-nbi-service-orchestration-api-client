@@ -12,10 +12,11 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 import unittest
-
+from datetime import datetime
 from inno_nbi_api.models.service_chain_response import ServiceChainResponse
+from inno_nbi_api.models.service_chain_response_service_chain import ServiceChainResponseServiceChain
+from inno_nbi_api.models.block import Block
 
 class TestServiceChainResponse(unittest.TestCase):
     """ServiceChainResponse unit test stubs"""
@@ -31,44 +32,82 @@ class TestServiceChainResponse(unittest.TestCase):
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `ServiceChainResponse`
-        """
-        model = ServiceChainResponse()
         if include_optional:
             return ServiceChainResponse(
-                service_chain = inno_nbi_api.models.service_chain_response_service_chain.ServiceChainResponse_serviceChain(
-                    id = '', 
-                    revision = 56, 
-                    name = '', 
-                    blocks = [
-                        inno_nbi_api.models.block.Block(
-                            id = '', 
-                            display_name = '', 
-                            owner = '', 
-                            org = '', 
-                            blockchart_name = '', 
-                            blockchart_version = '', 
-                            blockchart_values = '', 
-                            status = 'OKTOSTATUS_IN_SYNC', 
-                            created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                            device_ids = [
-                                ''
-                                ], )
-                        ], 
-                    status = '', 
-                    org = '', 
-                    owner = '', 
-                    created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
+                service_chain=ServiceChainResponseServiceChain(
+                    id='123',
+                    revision=56,
+                    name='Test Service Chain',
+                    blocks=[
+                        Block(
+                            id='block1',
+                            display_name='Test Block',
+                            owner='owner1',
+                            org='org1',
+                            blockchart_name='blockchart1',
+                            blockchart_version='v1',
+                            blockchart_values='values',
+                            status='OKTOSTATUS_IN_SYNC',
+                            created_at=datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                            device_ids=['device1']
+                        )
+                    ],
+                    status='ACTIVE',
+                    org='org1',
+                    owner='owner1',
+                    created_at=datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
+                )
             )
         else:
             return ServiceChainResponse(
-        )
-        """
+                service_chain=ServiceChainResponseServiceChain(
+                    id='123',
+                    name='Test Service Chain',
+                    status='ACTIVE',
+                    org='org1',
+                    owner='owner1',
+                    created_at=datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
+                )
+            )
 
-    def testServiceChainResponse(self):
-        """Test ServiceChainResponse"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+    def testServiceChainResponse_required_only(self):
+        """Test ServiceChainResponse with only required params"""
+        inst_req_only = self.make_instance(include_optional=False)
+        self.assertIsInstance(inst_req_only, ServiceChainResponse)
+        self.assertIsInstance(inst_req_only.service_chain, ServiceChainResponseServiceChain)
+        self.assertEqual(inst_req_only.service_chain.id, '123')
+        self.assertEqual(inst_req_only.service_chain.name, 'Test Service Chain')
+        self.assertEqual(inst_req_only.service_chain.status, 'ACTIVE')
+        self.assertEqual(inst_req_only.service_chain.org, 'org1')
+        self.assertEqual(inst_req_only.service_chain.owner, 'owner1')
+        self.assertEqual(inst_req_only.service_chain.created_at, datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'))
+        self.assertIsNone(inst_req_only.service_chain.blocks)
+        self.assertIsNone(inst_req_only.service_chain.revision)
+
+    def testServiceChainResponse_required_and_optional(self):
+        """Test ServiceChainResponse with required and optional params"""
+        inst_req_and_optional = self.make_instance(include_optional=True)
+        self.assertIsInstance(inst_req_and_optional, ServiceChainResponse)
+        self.assertIsInstance(inst_req_and_optional.service_chain, ServiceChainResponseServiceChain)
+        self.assertEqual(inst_req_and_optional.service_chain.id, '123')
+        self.assertEqual(inst_req_and_optional.service_chain.revision, 56)
+        self.assertEqual(inst_req_and_optional.service_chain.name, 'Test Service Chain')
+        self.assertEqual(inst_req_and_optional.service_chain.status, 'ACTIVE')
+        self.assertEqual(inst_req_and_optional.service_chain.org, 'org1')
+        self.assertEqual(inst_req_and_optional.service_chain.owner, 'owner1')
+        self.assertEqual(inst_req_and_optional.service_chain.created_at, datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'))
+        self.assertIsNotNone(inst_req_and_optional.service_chain.blocks)
+        self.assertEqual(len(inst_req_and_optional.service_chain.blocks), 1)
+        self.assertEqual(inst_req_and_optional.service_chain.blocks[0].id, 'block1')
+        self.assertEqual(inst_req_and_optional.service_chain.blocks[0].display_name, 'Test Block')
+        self.assertEqual(inst_req_and_optional.service_chain.blocks[0].owner, 'owner1')
+        self.assertEqual(inst_req_and_optional.service_chain.blocks[0].org, 'org1')
+        self.assertEqual(inst_req_and_optional.service_chain.blocks[0].blockchart_name, 'blockchart1')
+        self.assertEqual(inst_req_and_optional.service_chain.blocks[0].blockchart_version, 'v1')
+        self.assertEqual(inst_req_and_optional.service_chain.blocks[0].blockchart_values, 'values')
+        self.assertEqual(inst_req_and_optional.service_chain.blocks[0].status, 'OKTOSTATUS_IN_SYNC')
+        self.assertEqual(inst_req_and_optional.service_chain.blocks[0].created_at, datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'))
+        self.assertEqual(inst_req_and_optional.service_chain.blocks[0].device_ids, ['device1'])
 
 if __name__ == '__main__':
     unittest.main()

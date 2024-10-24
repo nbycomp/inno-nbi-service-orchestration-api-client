@@ -12,11 +12,13 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-import unittest
-from inno_nbi_api.models.device_position import DevicePosition
 
-class TestDevicePosition(unittest.TestCase):
-    """DevicePosition unit test stubs"""
+import unittest
+
+from inno_nbi_api.models.error_response import ErrorResponse
+
+class TestErrorResponse(unittest.TestCase):
+    """ErrorResponse unit test stubs"""
 
     def setUp(self):
         pass
@@ -24,28 +26,31 @@ class TestDevicePosition(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> DevicePosition:
-        """Test DevicePosition
+    def make_instance(self, include_optional) -> ErrorResponse:
+        """Test ErrorResponse
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
+        # uncomment below to create an instance of `ErrorResponse`
+        """
+        model = ErrorResponse()
         if include_optional:
-            return DevicePosition(
-                lat=1.337,
-                lng=1.337
+            return ErrorResponse(
+                code = 56,
+                message = '',
+                details = [
+                    ''
+                    ]
             )
         else:
-            return DevicePosition()
+            return ErrorResponse(
+        )
+        """
 
-    def testDevicePosition(self):
-        """Test DevicePosition"""
-        inst_req_only = self.make_instance(include_optional=False)
-        self.assertIsNone(inst_req_only.lat)
-        self.assertIsNone(inst_req_only.lng)
-
-        inst_req_and_optional = self.make_instance(include_optional=True)
-        self.assertEqual(inst_req_and_optional.lat, 1.337)
-        self.assertEqual(inst_req_and_optional.lng, 1.337)
+    def testErrorResponse(self):
+        """Test ErrorResponse"""
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()
