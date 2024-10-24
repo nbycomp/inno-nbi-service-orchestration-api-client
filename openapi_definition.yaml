@@ -4,7 +4,7 @@ info:
   description: Provides a robust interface for orchestrating service chains across cloud and edge computing environments, facilitating deployment, management, and updates of service chains to ensure dynamic, efficient operations across diverse infrastructure setups.
   termsOfService: 'https://www.nearbycomputing.com/terms'
   contact:
-    name: API Support Team NBYOne
+    name: API Support Team NBY
     url: 'https://www.nearbycomputing.com/support'
     email: support@nearbycomputing.com
   license:
