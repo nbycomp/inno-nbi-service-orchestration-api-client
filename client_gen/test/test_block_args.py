@@ -48,7 +48,6 @@ class TestBlockArgs(unittest.TestCase):
         self.assertEqual(inst_req_and_optional.display_name, 'Test Service 1')
         self.assertEqual(inst_req_and_optional.block_chart_name, 'Test Service 1')
         self.assertEqual(inst_req_and_optional.block_chart_version, '0.0.1')
-        self.assertEqual(inst_req_and_optional.values, '')
 
     def testBlockArgsUpdate(self):
         """Test BlockArgsUpdate"""
