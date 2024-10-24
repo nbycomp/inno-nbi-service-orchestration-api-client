@@ -111,17 +111,30 @@ def test_deploy_service(client, site_id, chart_name, chart_version, display_name
     logging.info("Starting test_deploy_service")
     try:
         service_name = f"NBI API Test Script - {chart_name}"
+        
+        # Ask user if they want to override values with the file parameters
+        override_values = input(f"Do you want to override the default values with parameters from 'nginx_values_override.yml'? (y/n): ").lower() == 'y'
+        
+        values = None
+        if override_values:
+            values_yaml = read_yaml_file('nginx_values_override.yml')
+            values = yaml.dump(values_yaml)
+            logging.info(f"Using override values from 'nginx_values_override.yml': {values}")
+        else:
+            logging.info("Using default values")
+        
         block_args = BlockArgsDeploy(
             site_id=site_id,
             display_name=display_name,
             block_chart_name=chart_name,
-            block_chart_version=chart_version
+            block_chart_version=chart_version,
+            values=values
         )
         logging.debug(f"BlockArgs created: {block_args}")
         
         deploy_args = DeployServiceChainArgs(
             name=service_name,
-            blocks=[block_args.model_dump()]  # Convert BlockArgs instance to a dictionary
+            blocks=[block_args.model_dump()]
         )
         logging.info(f"DeployServiceChainArgs created: {deploy_args}")
         
@@ -263,6 +276,10 @@ def select_service_to_delete(services):
                 print("Invalid choice. Please try again.")
         except ValueError:
             print("Invalid input. Please enter a number.")
+
+def read_yaml_file(file_path):
+    with open(file_path, 'r') as file:
+        return yaml.safe_load(file)
 
 # Example usage
 if __name__ == "__main__":
