@@ -1,15 +1,16 @@
 # BlockArgsDeploy
 
-Defines either a new block to be added or an existing block to be updated within a service chain.
+Defines a new block to be added to a service chain.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**display_name** | **str** | The display name of the block. | [optional] 
-**block_chart_name** | **str** | The name of the block chart associated with this block. | [optional] 
-**block_chart_version** | **str** | The version of the block chart to be used. | [optional] 
-**site_id** | **str** | The ID of the site associated with this block. | [optional] 
+**display_name** | **str** | The display name of the block. | 
+**block_chart_name** | **str** | The name of the block chart associated with this block. | 
+**block_chart_version** | **str** | The version of the block chart to be used. | 
+**site_id** | **str** | The ID of the site associated with this block. | 
+**values** | **str** | Optional. A string of values necessary for configuring the block, typically in JSON or YAML format. If not provided, default values will be used. | [optional] 
 
 ## Example
 

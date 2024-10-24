@@ -25,13 +25,14 @@ from typing_extensions import Self
 
 class BlockArgsDeploy(BaseModel):
     """
-    Defines either a new block to be added or an existing block to be updated within a service chain.
+    Defines a new block to be added to a service chain.
     """ # noqa: E501
-    display_name: Optional[StrictStr] = Field(default=None, description="The display name of the block.", alias="displayName")
-    block_chart_name: Optional[StrictStr] = Field(default=None, description="The name of the block chart associated with this block.", alias="blockChartName")
-    block_chart_version: Optional[StrictStr] = Field(default=None, description="The version of the block chart to be used.", alias="blockChartVersion")
-    site_id: Optional[StrictStr] = Field(default=None, description="The ID of the site associated with this block.")
-    __properties: ClassVar[List[str]] = ["displayName", "blockChartName", "blockChartVersion", "site_id"]
+    display_name: StrictStr = Field(description="The display name of the block.", alias="displayName")
+    block_chart_name: StrictStr = Field(description="The name of the block chart associated with this block.", alias="blockChartName")
+    block_chart_version: StrictStr = Field(description="The version of the block chart to be used.", alias="blockChartVersion")
+    site_id: StrictStr = Field(description="The ID of the site associated with this block.")
+    values: Optional[StrictStr] = Field(default=None, description="Optional. A string of values necessary for configuring the block, typically in JSON or YAML format. If not provided, default values will be used.")
+    __properties: ClassVar[List[str]] = ["displayName", "blockChartName", "blockChartVersion", "site_id", "values"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -87,7 +88,8 @@ class BlockArgsDeploy(BaseModel):
             "displayName": obj.get("displayName"),
             "blockChartName": obj.get("blockChartName"),
             "blockChartVersion": obj.get("blockChartVersion"),
-            "site_id": obj.get("site_id")
+            "site_id": obj.get("site_id"),
+            "values": obj.get("values")
         })
         return _obj
 

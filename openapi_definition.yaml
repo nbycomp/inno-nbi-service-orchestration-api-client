@@ -928,7 +928,7 @@ components:
       
     BlockArgsDeploy:
       type: object
-      description: Defines either a new block to be added or an existing block to be updated within a service chain.
+      description: Defines a new block to be added to a service chain.
       properties:
         displayName:
           type: string
@@ -942,6 +942,14 @@ components:
         site_id:
           type: string
           description: The ID of the site associated with this block.
+        values:
+          type: string
+          description: Optional. A string of values necessary for configuring the block, typically in JSON or YAML format. If not provided, default values will be used.
+      required:
+        - displayName
+        - blockChartName
+        - blockChartVersion
+        - site_id
 
     ErrorResponse:
       type: object
